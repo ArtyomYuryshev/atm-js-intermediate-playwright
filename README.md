@@ -3,7 +3,6 @@
 > This is an educational project.
 > Do not consider current solutions as the only correct ones and ready for use on a production project
 
-
 # How To
 
 ### To update local modules:
@@ -11,7 +10,7 @@
 You can update local modules by running the following command in your terminal:
 
 ```shell
-npm install 
+npm install
 ```
 
 ### To run tests:

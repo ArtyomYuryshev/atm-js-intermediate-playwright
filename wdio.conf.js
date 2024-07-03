@@ -57,5 +57,5 @@ exports.config = {
 
   onComplete() {
     console.warn(`Finish time: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
-  }
+  },
 };
