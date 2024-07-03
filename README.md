@@ -32,8 +32,6 @@ allure serve ./allure-results
 
 ### To run Prettier for ALL files:
 
-If you want to view the allure report, you can use this command in your terminal:
-
 ```shell
 npx prettier --write .
 ```
