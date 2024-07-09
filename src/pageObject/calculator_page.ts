@@ -21,6 +21,22 @@ export class CalculatorPage extends BasePage {
   }
 
   configurationBlock() {
-    return $('span.U4lDT');
+    return $('div.vHartc');
+  }
+
+  computeEngineElement() {
+    return $('//h2[text()="Compute Engine"]');
+  }
+
+  incrementInstances() {
+    return $('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
+  }
+
+  costInHeader() {
+    return $('.egBpsb .MyvX5d.D0aEmf');
+  }
+
+  firstInstances() {
+    return $('div[aria-label="Edit Instances"]');
   }
 }

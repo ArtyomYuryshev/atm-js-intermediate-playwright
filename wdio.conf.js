@@ -24,7 +24,7 @@ exports.config = {
     },
   ],
 
-  logLevel: 'trace',
+  logLevel: 'error',
 
   bail: 0,
   baseUrl: 'https://cloud.google.com',
