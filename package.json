@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "test": "wdio",
-    "report:generate": "allure generate"
+    "report:generate": "allure generate",
+    "depcheck": "depcheck",
+    "prettier": "npx prettier --write ."
   },
   "license": "EPAM Systems",
   "dependencies": {
@@ -27,6 +29,7 @@
     "node": "14"
   },
   "devDependencies": {
+    "depcheck": "^1.4.7",
     "dotenv": "^16.4.5",
     "prettier": "^3.3.2",
     "typescript": "4.2.3",
