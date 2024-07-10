@@ -18,20 +18,19 @@ describe('Cloud Calculator', () => {
     if (isDisplayed) {
       await okButton.click();
     }
-  });
-
-  it('Should be able to add new instances into the calculator', async () => {
-    console.log('First test');
 
     const url = await browser.getUrl();
     chai.expect(url).to.be.equal(browser.config.baseUrl + '/products/calculator');
+  });
+
+  it('Should be able to open calculator', async () => {
+    console.log('First test');
 
     const addEstimateButton = await calculatorPage.addEstimateButton();
     await addEstimateButton.waitForDisplayed();
     addEstimateButton.click();
 
     const addEstimationModalWindow = await calculatorPage.addEstimationModalWindow();
-
     await addEstimationModalWindow.waitForDisplayed();
     chai.expect(await addEstimationModalWindow.isDisplayed()).to.be.true;
 
@@ -39,21 +38,24 @@ describe('Cloud Calculator', () => {
     await computeEngineElement.waitForDisplayed();
     computeEngineElement.click();
 
-    // to check that configuration form is displayed
     const configurationBlock = await calculatorPage.configurationBlock();
     await configurationBlock.waitForDisplayed();
     chai.expect(await configurationBlock.isDisplayed()).to.be.true;
+  });
 
+  it('Should add Instance to Cost details after opening calculator', async () => {
     const firstInstances = await calculatorPage.firstInstances();
     await firstInstances.waitForDisplayed();
     chai.expect(await firstInstances.isDisplayed()).to.be.true;
+
+    const oneInstancesCostUSD = '$138.70';
+    await expect(calculatorPage.costInHeader()).toHaveText(oneInstancesCostUSD);
   });
 
   it('Should be able to add two new instances', async () => {
     console.log(`Second test`);
 
     const addNewInstanceButton = await calculatorPage.incrementInstances();
-
     for (let i = 0; i <= 1; i++) {
       addNewInstanceButton.click();
     }
