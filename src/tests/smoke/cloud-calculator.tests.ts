@@ -1,5 +1,5 @@
 import { CalculatorPage } from '../../pageObject/calculator_page';
-const chai = require('chai');
+import chai from 'chai';
 
 const calculatorPage = new CalculatorPage();
 
@@ -7,8 +7,9 @@ describe('Cloud Calculator', () => {
 
   it('Should be able to open calculator', async () => {
     console.log('First test');
-        // @ts-ignore
-        await calculatorPage.open();
+    
+    // @ts-ignore
+    await calculatorPage.open();
 
     const addEstimateButton = await calculatorPage.addEstimateButton();
     await addEstimateButton.waitForDisplayed();
