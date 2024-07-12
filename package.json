@@ -4,8 +4,7 @@
   "description": "Automated Testing Mentoring with JS: Intermediate",
   "private": true,
   "scripts": {
-    "test": "wdio",
-    "report:generate": "allure generate",
+    "test": "wdio run wdio.conf.ts",
     "depcheck": "depcheck",
     "prettier": "npx prettier --write ."
   },
@@ -17,6 +16,7 @@
     "@wdio/local-runner": "7.2.3",
     "@wdio/mocha-framework": "^7.33.0",
     "@wdio/spec-reporter": "7.2.1",
+    "@wdio/types": "^8.39.0",
     "chai": "4.4.1",
     "chromedriver": "^126.0.4",
     "ts-node": "10.2.1"

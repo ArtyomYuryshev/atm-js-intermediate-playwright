@@ -1,4 +1,6 @@
-exports.config = {
+import { Options } from '@wdio/types';
+
+export const config: Options.Testrunner = {
   autoCompileOpts: {
     autoCompile: true,
     tsNodeOpts: {
