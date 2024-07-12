@@ -1,8 +1,7 @@
 export class BasePage {
-  constructor(private readonly url: any) {}
+  constructor(private readonly url: string) {}
 
-  // @ts-ignore
-  open(url: any) {
+  open() {
     return browser.url(this.url);
   }
 }

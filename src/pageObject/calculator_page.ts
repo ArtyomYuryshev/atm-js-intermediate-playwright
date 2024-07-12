@@ -1,6 +1,5 @@
 import { BasePage } from './BasePage';
-
-// TODO: Add more selectors
+import { $ } from '@wdio/globals'
 
 export class CalculatorPage extends BasePage {
   constructor() {
