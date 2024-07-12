@@ -1,54 +1,49 @@
-import "dotenv/config";
-import { CalculatorPage } from "../../pageObject/calculator_page";
-const chai = require('chai');
+import { CalculatorPage } from '../../pageObject/calculator_page';
+import { expect } from '@wdio/globals';
 
 const calculatorPage = new CalculatorPage();
 
-const okCookieButton = process.env['LOCALE'] === 'en' ? 'OK, got it' : 'OK';
-
 describe('Cloud Calculator', () => {
-  before(async () => {
-    // @ts-ignore
+  it('Should be able to open "Add to this estimate" pop-up', async () => {
     await calculatorPage.open();
-    const okButton = await $(`//*[text()="${okCookieButton}"]`);
-    await okButton.click();
-  });
-
-  it('Should be able to add new entities into the calculator', async () => {
-    console.log('First test');
-
-    // @ts-ignore
-    await calculatorPage.open();
-
-    const url = await browser.getUrl();
-    chai.expect(url).to.be.equal(browser.config.baseUrl + '/products/calculator');
-
-    await expect(calculatorPage.addEstimateButton()).toBeDisplayed();
 
     const addEstimateButton = await calculatorPage.addEstimateButton();
-    addEstimateButton.click();
+    await addEstimateButton.waitForDisplayed();
+    await addEstimateButton.click();
 
     const addEstimationModalWindow = await calculatorPage.addEstimationModalWindow();
-
-    await browser.pause(150);
-    chai.expect(await addEstimationModalWindow.isDisplayed()).to.be.true;
-
-    const computeEngineElement = await $('//h2[text()="Compute Engine"]');
-    await computeEngineElement.click();
-
-    await expect(calculatorPage.configurationBlock()).toBeDisplayed();
+    await addEstimationModalWindow.waitForDisplayed();
+    expect(addEstimationModalWindow).toBeDisplayed();
   });
 
-  it("Should be able to add two new instances", async () => {
-    console.log(`Second test`);
+  it('Should be able to open "Add to this estimate" pop-up', async () => {
+    const computeEngineElement = await calculatorPage.computeEngineElement();
+    await computeEngineElement.waitForDisplayed();
+    await computeEngineElement.click();
 
-    $('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb').then(addNewInstanceButton => {
-      for (let i = 0; i <= 2; i++) {
-        addNewInstanceButton.click();
-      }
-    });
+    const configurationBlock = await calculatorPage.configurationBlock();
+    await configurationBlock.waitForDisplayed();
+    expect(configurationBlock).toBeDisplayed();
+  });
+
+  it('Should add Instance to Cost details after opening calculator', async () => {
+    const firstInstances = await calculatorPage.firstInstances();
+    await firstInstances.waitForDisplayed();
+    expect(firstInstances).toBeDisplayed();
+
+    const oneInstancesCostUSD = '$138.70';
+    await expect(calculatorPage.costInHeader()).toHaveText(oneInstancesCostUSD);
+  });
+
+  it('Should be able to add two new instances', async () => {
+    console.log('Second test');
+
+    const addNewInstanceButton = await calculatorPage.incrementInstances();
+    for (let i = 0; i <= 1; i++) {
+      await addNewInstanceButton.click();
+    }
 
     const threeInstancesCostUSD = '$417.30';
-    await expect($('.egBpsb .MyvX5d.D0aEmf')).toHaveText(threeInstancesCostUSD);
+    await expect(calculatorPage.costInHeader()).toHaveText(threeInstancesCostUSD);
   });
 });
