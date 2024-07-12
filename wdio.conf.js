@@ -1,5 +1,3 @@
-const moment = require('moment');
-
 exports.config = {
   autoCompileOpts: {
     autoCompile: true,
@@ -33,29 +31,11 @@ exports.config = {
   connectionRetryTimeout: 90000,
   connectionRetryCount: 3,
 
-  reporters: ['spec', 'allure'],
+  reporters: ['spec'],
   services: ['chromedriver'],
 
   framework: 'mocha',
   mochaOpts: {
     timeout: 30000,
-  },
-
-  onPrepare() {
-    console.warn(`Start time: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
-  },
-
-  async before() {
-    await browser.setWindowSize(1280, 720);
-  },
-
-  async afterTest(_test, _context, { error }) {
-    if (error) {
-      await browser.takeScreenshot();
-    }
-  },
-
-  onComplete() {
-    console.warn(`Finish time: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
-  },
+  }
 };

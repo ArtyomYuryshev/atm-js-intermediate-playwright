@@ -25,9 +25,6 @@
     "moment": "^2.30.1",
     "ts-node": "10.2.1"
   },
-  "engines": {
-    "node": "14"
-  },
   "devDependencies": {
     "depcheck": "^1.4.7",
     "dotenv": "^16.4.5",

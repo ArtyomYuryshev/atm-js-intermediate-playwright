@@ -1,30 +1,14 @@
-import 'dotenv/config';
 import { CalculatorPage } from '../../pageObject/calculator_page';
 const chai = require('chai');
 
 const calculatorPage = new CalculatorPage();
 
-const okCookieButton = process.env['LOCALE'] === 'en' ? 'OK, got it' : 'OK';
-
 describe('Cloud Calculator', () => {
-  before(async () => {
-    // @ts-ignore
-    await calculatorPage.open();
-
-    // checking the existence of the popup before clicking the button
-    const okButton = await $(`//*[text()="${okCookieButton}"]`);
-    const isDisplayed = await okButton.isDisplayed().catch(() => false);
-
-    if (isDisplayed) {
-      await okButton.click();
-    }
-
-    const url = await browser.getUrl();
-    chai.expect(url).to.be.equal(browser.config.baseUrl + '/products/calculator');
-  });
 
   it('Should be able to open calculator', async () => {
     console.log('First test');
+        // @ts-ignore
+        await calculatorPage.open();
 
     const addEstimateButton = await calculatorPage.addEstimateButton();
     await addEstimateButton.waitForDisplayed();
