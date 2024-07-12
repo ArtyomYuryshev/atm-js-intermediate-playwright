@@ -23,9 +23,7 @@ describe('Cloud Calculator', () => {
     chai.expect(url).to.be.equal(browser.config.baseUrl + '/products/calculator');
   });
 
-  it('Should be able to open calculator', async () => {
-    console.log('First test');
-
+  it('Should be able to open "Add to this estimate" pop-up', async () => {
     const addEstimateButton = await calculatorPage.addEstimateButton();
     await addEstimateButton.waitForDisplayed();
     addEstimateButton.click();
@@ -33,7 +31,9 @@ describe('Cloud Calculator', () => {
     const addEstimationModalWindow = await calculatorPage.addEstimationModalWindow();
     await addEstimationModalWindow.waitForDisplayed();
     chai.expect(await addEstimationModalWindow.isDisplayed()).to.be.true;
+  });
 
+  it('Should be able to open "Compute Engine" calculator', async () => {
     const computeEngineElement = await calculatorPage.computeEngineElement();
     await computeEngineElement.waitForDisplayed();
     computeEngineElement.click();
