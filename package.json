@@ -2,6 +2,7 @@
   "name": "atm-int",
   "version": "1.0.0",
   "description": "Automated Testing Mentoring with JS: Intermediate",
+  "license": "EPAM Systems",
   "private": true,
   "type": "commonjs",
   "scripts": {
@@ -11,7 +12,9 @@
     "allure:generate": "allure generate allure-results --clean",
     "allure:open": "allure open allure-report"
   },
-  "license": "EPAM Systems",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@types/node": "^20.14.10",
     "@wdio/allure-reporter": "^8.39.0",
