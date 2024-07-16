@@ -36,8 +36,6 @@ describe('Cloud Calculator', () => {
   });
 
   it('Should be able to add two new instances', async () => {
-    console.log('Second test');
-
     const addNewInstanceButton = await calculatorPage.incrementInstances();
     for (let i = 0; i < 2; i++) {
       await addNewInstanceButton.click();
