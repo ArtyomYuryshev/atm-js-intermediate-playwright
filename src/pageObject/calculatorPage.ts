@@ -1,17 +1,12 @@
-import { BasePage } from './basePage';
-import { $ } from '@wdio/globals'
+import { basePage } from './basePage';
 
-export class CalculatorPage extends BasePage {
+export class CalculatorPage extends basePage {
   constructor() {
     super('/products/calculator');
   }
 
-  welcomeElement() {
-    return $$('.Gxwdcd');
-  }
-
-  async addEstimateButton() {
-    return await $('//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]');
+  addEstimateButton() {
+    return $('//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]');
   }
 
   addEstimationModalWindow() {
@@ -19,7 +14,7 @@ export class CalculatorPage extends BasePage {
   }
 
   configurationBlock() {
-    return $('div.vHartc');
+    return $('div.U4lDT');
   }
 
   computeEngineElement() {

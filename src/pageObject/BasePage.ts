@@ -1,4 +1,4 @@
-export class BasePage {
+export class basePage {
   constructor(private readonly url: string) {}
 
   open() {
