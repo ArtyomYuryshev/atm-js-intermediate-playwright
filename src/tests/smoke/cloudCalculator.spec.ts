@@ -1,4 +1,4 @@
-import { CalculatorPage } from '../../pageObject/calculator_page';
+import { CalculatorPage } from '../../pageObject/calculatorPage';
 import { expect } from '@wdio/globals';
 
 const calculatorPage = new CalculatorPage();

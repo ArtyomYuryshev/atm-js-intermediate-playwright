@@ -10,7 +10,7 @@ export const config: Options.Testrunner = {
     },
   },
   runner: 'local',
-  specs: ['./src/tests/**/**.tests.ts'],
+  specs: ['./src/tests/**/**.spec.ts'],
   maxInstances: 1,
   capabilities: [
     {

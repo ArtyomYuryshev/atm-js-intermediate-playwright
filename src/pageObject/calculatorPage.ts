@@ -1,4 +1,4 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './basePage';
 import { $ } from '@wdio/globals'
 
 export class CalculatorPage extends BasePage {
