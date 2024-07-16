@@ -1,5 +1,6 @@
 import { Options } from '@wdio/types';
 import { browser } from '@wdio/globals';
+import moment from 'moment';
 
 export const config: Options.Testrunner = {
   autoCompileOpts: {
@@ -43,4 +44,13 @@ export const config: Options.Testrunner = {
       await browser.takeScreenshot();
     }
   },
+
+  onPrepare() {
+    console.warn(`Start time: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
+  },
+
+  onComplete() {
+    console.warn(`Finish time: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
+  }
+
 };
