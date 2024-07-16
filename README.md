@@ -24,12 +24,6 @@ npm test
 ### To run Prettier for ALL files:
 
 ```shell
-npx prettier --write .
-```
-
-or via npm
-
-```shell
 npm run prettier
 ```
 
