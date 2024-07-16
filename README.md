@@ -21,20 +21,6 @@ You can run tests by using the following command in your terminal:
 npm test
 ```
 
-### To view allure report:
-
-If you want to view the allure report, you can use this command in your terminal:
-
-```shell
-allure serve ./allure-results
-```
-
-or generate HTML version
-
-```shell
-npm run report:generate
-```
-
 ### To run Prettier for ALL files:
 
 ```shell
@@ -51,4 +37,16 @@ npm run prettier
 
 ```shell
 npm run depcheck
+```
+
+### To generate allure report in html:
+
+```shell
+npm run allure:generate
+```
+
+### To open allure report:
+
+```shell
+npm run allure:open
 ```

@@ -1,6 +1,7 @@
-const moment = require('moment');
+import { Options } from '@wdio/types';
+import { browser } from '@wdio/globals';
 
-exports.config = {
+export const config: Options.Testrunner = {
   autoCompileOpts: {
     autoCompile: true,
     tsNodeOpts: {
@@ -8,54 +9,38 @@ exports.config = {
       project: 'tsconfig.json',
     },
   },
-
   runner: 'local',
-
   specs: ['./src/tests/**/**.tests.ts'],
-  suites: {
-    smoke: ['./src/tests/smoke/**.tests.js'],
-  },
-
   maxInstances: 1,
-
   capabilities: [
     {
       browserName: 'chrome',
     },
   ],
-
-  logLevel: 'error',
-
+  logLevel: 'info',
   bail: 0,
   baseUrl: 'https://cloud.google.com',
-
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 3,
-
   reporters: ['spec', 'allure'],
-  services: ['chromedriver'],
-
   framework: 'mocha',
   mochaOpts: {
     timeout: 30000,
   },
 
-  onPrepare() {
-    console.warn(`Start time: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
+  before: function (capabilities, specs) {
+    browser.setWindowSize(1280, 720);
+    console.log('Initializing browser session');
   },
 
-  async before() {
-    await browser.setWindowSize(1280, 720);
+  after: function (result, capabilities, specs) {
+    console.log('Ending browser session');
   },
 
   async afterTest(_test, _context, { error }) {
     if (error) {
       await browser.takeScreenshot();
     }
-  },
-
-  onComplete() {
-    console.warn(`Finish time: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
   },
 };
