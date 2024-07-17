@@ -8,7 +8,8 @@
   "scripts": {
     "test": "wdio run wdio.conf.ts",
     "depcheck": "depcheck",
-    "prettier": "npx prettier --write .",
+    "prettier:chek": "npx prettier --check .",
+    "prettier:write": "npx prettier --write .",
     "lint": "eslint . --ext .ts",
     "allure:generate": "allure generate allure-results --clean",
     "allure:open": "allure open allure-report"

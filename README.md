@@ -27,10 +27,16 @@ npm test
 npm run depcheck
 ```
 
-### To run Prettier for ALL files:
+### To run Prettier for ALL files to check:
 
 ```shell
-npm run prettier
+npm run prettier:check
+```
+
+### To run Prettier for ALL files to re-write:
+
+```shell
+npm run prettier:write
 ```
 
 ### To run ESLint for ALL files:
