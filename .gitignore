@@ -1,8 +1,22 @@
-.idea
-.vscode
+# macOS
+.DS_Store
 
+# Windows
+Thumbs.db
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependency directories
 node_modules
 
+# Allure reports
 allure-report
-
-.env
+allure-results
