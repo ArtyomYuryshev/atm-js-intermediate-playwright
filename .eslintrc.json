@@ -14,12 +14,12 @@
                 "format": ["camelCase"]
             },
             {
-                "selector": "variableLike",
+                "selector": "variable",
                 "format": ["camelCase", "UPPER_CASE"]
             },
             {
                 "selector": "typeLike",
-                "format": ["camelCase"]
+                "format": ["PascalCase"]
             }
         ]
     },

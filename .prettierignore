@@ -1,2 +1,3 @@
 # Ignore json configs
 package.json
+package-lock.json

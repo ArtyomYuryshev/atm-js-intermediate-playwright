@@ -1,6 +1,6 @@
-import { basePage } from './basePage';
+import { BasePage } from './base-page';
 
-export class calculatorPage extends basePage {
+export class CalculatorPage extends BasePage {
     constructor() {
         super('/products/calculator');
     }

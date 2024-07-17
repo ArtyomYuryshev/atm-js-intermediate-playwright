@@ -21,12 +21,6 @@ You can run tests by using the following command in your terminal:
 npm test
 ```
 
-### To analyzing dependencies in a project:
-
-```shell
-npm run depcheck
-```
-
 ### To run Prettier for ALL files to check:
 
 ```shell

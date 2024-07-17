@@ -1,6 +1,6 @@
-import { calculatorPage } from '../../pageObject/calculatorPage';
+import { CalculatorPage } from '../../pageObject/calculator-page';
 
-const calculatorPageInstance = new calculatorPage();
+const calculatorPageInstance = new CalculatorPage();
 
 describe('Cloud Calculator', () => {
     it('Should be able to open "Add to this estimate" pop-up', async () => {
