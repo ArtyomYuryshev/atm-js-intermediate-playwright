@@ -21,16 +21,22 @@ You can run tests by using the following command in your terminal:
 npm test
 ```
 
+### To analyzing dependencies in a project:
+
+```shell
+npm run depcheck
+```
+
 ### To run Prettier for ALL files:
 
 ```shell
 npm run prettier
 ```
 
-### To analyzing dependencies in a project:
+### To run ESLint for ALL files:
 
 ```shell
-npm run depcheck
+npm run lint
 ```
 
 ### To generate allure report in html:

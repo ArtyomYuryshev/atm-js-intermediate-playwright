@@ -1,6 +1,6 @@
 import { basePage } from './basePage';
 
-export class CalculatorPage extends basePage {
+export class calculatorPage extends basePage {
   constructor() {
     super('/products/calculator');
   }
