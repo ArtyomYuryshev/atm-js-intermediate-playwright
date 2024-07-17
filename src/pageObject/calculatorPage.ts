@@ -5,31 +5,31 @@ export class calculatorPage extends basePage {
         super('/products/calculator');
     }
 
-    addEstimateButton() {
+    get addEstimateButton() {
         return $('//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]');
     }
 
-    addEstimationModalWindow() {
+    get addEstimationModalWindow() {
         return $('[aria-label="Add to this estimate"]');
     }
 
-    configurationBlock() {
+    get configurationBlock() {
         return $('div.U4lDT');
     }
 
-    computeEngineElement() {
+    get computeEngineElement() {
         return $('//h2[text()="Compute Engine"]');
     }
 
-    incrementInstances() {
+    get incrementInstances() {
         return $('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
     }
 
-    costInHeader() {
+    get costInHeader() {
         return $('.egBpsb .MyvX5d.D0aEmf');
     }
 
-    firstInstances() {
+    get firstInstances() {
         return $('div[aria-label="Edit Instances"]');
     }
 }
