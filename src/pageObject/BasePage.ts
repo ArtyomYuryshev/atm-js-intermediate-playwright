@@ -1,7 +1,7 @@
 export class basePage {
-  constructor(private readonly url: string) {}
+    constructor(private readonly url: string) {}
 
-  open() {
-    return browser.url(this.url);
-  }
+    open() {
+        return browser.url(this.url);
+    }
 }
