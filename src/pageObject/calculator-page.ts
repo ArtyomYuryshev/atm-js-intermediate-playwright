@@ -37,15 +37,14 @@ export class CalculatorPage extends BasePage {
     }
 
     get shareButton() {
-        return this.page.locator('button[aria-label="Open Share Estimate dialog"]')
+        return this.page.locator('button[aria-label="Open Share Estimate dialog"]');
     }
 
     get shareEstimatePopup() {
-        return this.page.locator('div[jsname="rZHESd"]')
+        return this.page.locator('div[jsname="rZHESd"]');
     }
 
     get openEstimationSummaryLink() {
-        return this.page.locator('a[track-name="open estimate summary"]')
+        return this.page.locator('a[track-name="open estimate summary"]');
     }
-    
 }

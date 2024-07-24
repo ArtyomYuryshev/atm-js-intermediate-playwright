@@ -65,7 +65,7 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
     test('Should open estimation summary in new tab', async ({ browser }) => {
         const [newPage] = await Promise.all([
             browser.contexts()[0].waitForEvent('page'),
-            calculatorPageInstance.openEstimationSummaryLink.click()
+            calculatorPageInstance.openEstimationSummaryLink.click(),
         ]);
 
         await newPage.waitForLoadState();
@@ -73,6 +73,6 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
 
         const summary = estimationPreview.summarySection;
         await expect(summary).toBeVisible();
-        await expect(estimationPreview.summaryCost).toHaveText("$417.30");
+        await expect(estimationPreview.summaryCost).toHaveText('$417.30');
     });
 });
