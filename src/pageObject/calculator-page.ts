@@ -35,4 +35,17 @@ export class CalculatorPage extends BasePage {
     get firstInstances() {
         return this.page.locator('div[aria-label="Edit Instances"]');
     }
+
+    get shareButton() {
+        return this.page.locator('button[aria-label="Open Share Estimate dialog"]')
+    }
+
+    get shareEstimatePopup() {
+        return this.page.locator('div[jsname="rZHESd"]')
+    }
+
+    get openEstimationSummaryLink() {
+        return this.page.locator('a[track-name="open estimate summary"]')
+    }
+    
 }

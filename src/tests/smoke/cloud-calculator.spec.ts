@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { CalculatorPage } from '../../pageObject/calculator-page';
+import { EstimationPreview } from '../../pageObject/estimation-preview';
 
 let calculatorPageInstance: CalculatorPage;
+let estimationPreview: EstimationPreview;
 
-test.describe('Cloud Calculator', () => {
+test.describe('Cloud Calculator. Compute Engine Smoke', () => {
     test.beforeAll(async ({ browser }) => {
         const context = await browser.newContext();
         const page = await context.newPage();
@@ -51,5 +53,26 @@ test.describe('Cloud Calculator', () => {
 
         const threeInstancesCostUSD: string = '$417.30';
         await expect(calculatorPageInstance.costInHeader).toHaveText(threeInstancesCostUSD);
+    });
+
+    test('Should open "Share Estimate" pop-up', async () => {
+        await calculatorPageInstance.shareButton.click();
+
+        await expect(calculatorPageInstance.shareEstimatePopup).toBeVisible();
+        await expect(calculatorPageInstance.openEstimationSummaryLink).toBeVisible();
+    });
+
+    test('Should open estimation summary in new tab', async ({ browser }) => {
+        const [newPage] = await Promise.all([
+            browser.contexts()[0].waitForEvent('page'),
+            calculatorPageInstance.openEstimationSummaryLink.click()
+        ]);
+
+        await newPage.waitForLoadState();
+        estimationPreview = new EstimationPreview(newPage);
+
+        const summary = estimationPreview.summarySection;
+        await expect(summary).toBeVisible();
+        await expect(estimationPreview.summaryCost).toHaveText("$417.30");
     });
 });
