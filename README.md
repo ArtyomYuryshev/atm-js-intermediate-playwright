@@ -38,15 +38,3 @@ npm run prettier:write
 ```shell
 npm run lint
 ```
-
-### To generate allure report in html:
-
-```shell
-npm run allure:generate
-```
-
-### To open allure report:
-
-```shell
-npm run allure:open
-```
