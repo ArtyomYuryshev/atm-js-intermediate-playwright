@@ -7,6 +7,8 @@
   "type": "commonjs",
   "scripts": {
     "test": "npx playwright test",
+    "test:head": "npx playwright test --headed",
+    "report": "npx playwright show-report pw-report",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write .",
     "lint": "eslint . --ext .ts"
@@ -17,7 +19,8 @@
   "dependencies": {
     "@types/node": "^20.14.10",
     "ts-node": "10.9.2",
-    "typescript": "5.5.3"
+    "typescript": "5.5.3",
+    "@playwright/test": "^1.45.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.16.1",

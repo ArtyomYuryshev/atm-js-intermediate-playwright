@@ -1,35 +1,36 @@
+import { Page } from 'playwright';
 import { BasePage } from './base-page';
 
 export class CalculatorPage extends BasePage {
-    constructor() {
-        super('/products/calculator');
+    constructor(page: Page) {
+        super(page, '/products/calculator');
     }
 
     get addEstimateButton() {
-        return $('//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]');
+        return this.page.locator('//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]');
     }
 
     get addEstimationModalWindow() {
-        return $('[aria-label="Add to this estimate"]');
+        return this.page.locator('[aria-label="Add to this estimate"]');
     }
 
     get configurationBlock() {
-        return $('div.U4lDT');
+        return this.page.locator('div.U4lDT');
     }
 
     get computeEngineElement() {
-        return $('//h2[text()="Compute Engine"]');
+        return this.page.locator('//h2[text()="Compute Engine"]');
     }
 
     get incrementInstances() {
-        return $('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
+        return this.page.locator('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
     }
 
     get costInHeader() {
-        return $('.egBpsb .MyvX5d.D0aEmf');
+        return this.page.locator('.egBpsb .MyvX5d.D0aEmf');
     }
 
     get firstInstances() {
-        return $('div[aria-label="Edit Instances"]');
+        return this.page.locator('div[aria-label="Edit Instances"]');
     }
 }
