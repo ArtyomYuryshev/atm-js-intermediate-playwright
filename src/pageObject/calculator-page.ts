@@ -7,7 +7,9 @@ export class CalculatorPage extends BasePage {
     }
 
     get addEstimateButton() {
-        return this.page.locator('//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]');
+        return this.page.locator(
+            '//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]',
+        );
     }
 
     get addEstimationModalWindow() {
