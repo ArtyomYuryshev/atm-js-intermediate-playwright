@@ -1,10 +1,13 @@
 import { Page } from 'playwright';
 
 export class BasePage {
-    constructor(
-        protected readonly page: Page,
-        private readonly url: string,
-    ) {}
+    protected readonly page: Page;
+    private readonly url: string;
+
+    constructor(page: Page, url: string) {
+        this.page = page;
+        this.url = url;
+    }
 
     async open() {
         await this.page.goto(this.url);

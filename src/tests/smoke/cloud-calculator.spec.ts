@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { CalculatorPage } from '../../pageObject/calculator-page';
-import { EstimationPreview } from '../../pageObject/estimation-preview';
+import { CalculatorPage, EstimationPreview } from '../../pageObject';
 
 let calculatorPageInstance: CalculatorPage;
 let estimationPreview: EstimationPreview;
@@ -11,11 +10,6 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
         const page = await context.newPage();
         calculatorPageInstance = new CalculatorPage(page);
         await calculatorPageInstance.open();
-    });
-
-    test.afterAll(async ({ browser }) => {
-        await calculatorPageInstance.close();
-        await browser.close();
     });
 
     test('Should be able to open "Add to this estimate" pop-up', async () => {

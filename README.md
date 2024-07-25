@@ -15,7 +15,7 @@ npm install
 
 ### To run tests:
 
-You can run tests by using the following command in your terminal.
+You can run tests by using the following command in your terminal:
 
 ```shell
 npm test
@@ -27,7 +27,7 @@ By default tests runs in headless mode. To run in 'headed' mode:
 npm run test:head
 ```
 
-### To veiew report:
+### To view report:
 
 ```shell
 npm run report
