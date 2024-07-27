@@ -33,10 +33,16 @@ By default tests runs in headless mode. To run in 'headed' mode:
 npm run test:head
 ```
 
-### To view report:
+### To view HTML report:
 
 ```shell
 npm run report
+```
+
+### To run Junit report on http://localhost:3000:
+
+```shell
+npm run report:runJunit
 ```
 
 ### To run Prettier for ALL files to check:

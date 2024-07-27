@@ -7,12 +7,16 @@ export default defineConfig({
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     workers: process.env.CI ? 1 : 2,
-    reporter: [['html', { outputFolder: 'pw-report', open: 'on-failure'}], ['list']],
+    reporter: [
+        ['list'],
+        ['html', { outputFolder: 'pw-reports/html', open: 'never' }],
+        ['junit', { outputFile: 'pw-reports/junit/results.xml' }],
+    ],
     use: {
         baseURL: 'https://cloud.google.com/',
         trace: 'on-first-retry',
         video: 'retain-on-failure',
-        screenshot: 'only-on-failure', 
+        screenshot: 'only-on-failure',
     },
     outputDir: 'pw-tests-results',
     projects: [
