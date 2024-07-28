@@ -3,6 +3,9 @@
 > This is an educational project.
 > Do not consider current solutions as the only correct ones and ready for use on a production project
 
+# NOTE!
+> **You should create .env and create "REPORT_PORTAL_API_KEY" variable where value for your variable is your API token.**
+
 # How To
 
 ### To update local modules:
