@@ -4,7 +4,7 @@
 > Do not consider current solutions as the only correct ones and ready for use on a production project
 
 # NOTE!
-> **You should create .env and create "REPORT_PORTAL_API_KEY" variable where value for your variable is your API token.**
+> **You should create a `.env` file and define the variables "REPORT_PORTAL_API_KEY" and "REPORT_PORTAL_PROJECT". <br> The value for the "REPORT_PORTAL_API_KEY" variable should be your API token, and the value for the "REPORT_PORTAL_PROJECT" variable should be your project name.**
 
 # How To
 

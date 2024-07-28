@@ -6,7 +6,7 @@ dotenv.config();
 const rpConfig = {
     apiKey: process.env.REPORT_PORTAL_API_KEY,
     endpoint: 'https://reportportal.epam.com/api/v1',
-    project: 'ARTYOM_YURYSHEV_PERSONAL',
+    project: process.env.REPORT_PORTAL_PROJECT,
     launch: `ATM-INTERMEDIATE Test Run - ${new Date().toISOString()}`,
     attributes: [
         {
