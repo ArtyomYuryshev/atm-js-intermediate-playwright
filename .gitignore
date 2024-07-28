@@ -24,3 +24,6 @@ node_modules
 
 # Other
 /playwright/.cache/
+
+#Variables
+.env
