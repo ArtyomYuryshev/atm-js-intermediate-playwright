@@ -13,6 +13,12 @@ You can update local modules by running the following command in your terminal:
 npm install
 ```
 
+### To init PW:
+
+```shell
+npm init playwright@latest
+```
+
 ### To run tests:
 
 You can run tests by using the following command in your terminal:
