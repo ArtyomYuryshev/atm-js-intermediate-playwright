@@ -13,12 +13,30 @@ You can update local modules by running the following command in your terminal:
 npm install
 ```
 
+### To init PW:
+
+```shell
+npm init playwright@latest
+```
+
 ### To run tests:
 
 You can run tests by using the following command in your terminal:
 
 ```shell
 npm test
+```
+
+By default tests runs in headless mode. To run in 'headed' mode:
+
+```shell
+npm run test:head
+```
+
+### To view report:
+
+```shell
+npm run report
 ```
 
 ### To run Prettier for ALL files to check:
@@ -37,16 +55,4 @@ npm run prettier:write
 
 ```shell
 npm run lint
-```
-
-### To generate allure report in html:
-
-```shell
-npm run allure:generate
-```
-
-### To open allure report:
-
-```shell
-npm run allure:open
 ```

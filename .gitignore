@@ -17,6 +17,10 @@ npm-debug.log*
 # Dependency directories
 node_modules
 
-# Allure reports
-allure-report
-allure-results
+# Reports
+/pw-report/
+/pw-tests-results/
+/blob-report/
+
+# Other
+/playwright/.cache/

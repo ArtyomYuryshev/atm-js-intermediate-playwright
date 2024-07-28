@@ -1,46 +1,95 @@
-import { CalculatorPage } from '../../pageObject/calculator-page';
+import { test, expect, Page } from '@playwright/test';
+import { CalculatorPage, EstimationPreview } from '../../pageObject';
 
-const calculatorPageInstance = new CalculatorPage();
+test.describe('Cloud Calculator. Compute Engine Smoke', () => {
+    let page: Page;
+    let calculatorPageInstance: CalculatorPage;
+    let estimationPreview: EstimationPreview;
 
-describe('Cloud Calculator', () => {
-    it('Should be able to open "Add to this estimate" pop-up', async () => {
+    test.beforeEach(async ({ page: newPage }) => {
+        page = newPage;
+        calculatorPageInstance = new CalculatorPage(page);
         await calculatorPageInstance.open();
-
-        const addEstimateButton = calculatorPageInstance.addEstimateButton;
-        await addEstimateButton.waitForDisplayed();
-        await addEstimateButton.click();
-
-        const addEstimationModalWindow = calculatorPageInstance.addEstimationModalWindow;
-        await addEstimationModalWindow.waitForDisplayed();
-        expect(addEstimationModalWindow).toBeDisplayed();
     });
 
-    it('Should be able to open "Compute Engine" screen', async () => {
-        const computeEngineElement = calculatorPageInstance.computeEngineElement;
-        await computeEngineElement.waitForDisplayed();
-        await computeEngineElement.click();
+    test('Should be able to open "Add to this estimate" pop-up', async () => {
+        await calculatorPageInstance.addEstimateButton.waitFor();
+        await calculatorPageInstance.addEstimateButton.click();
 
-        const configurationBlock = calculatorPageInstance.configurationBlock;
-        await configurationBlock.waitForDisplayed();
-        expect(configurationBlock).toBeDisplayed();
+        await expect(calculatorPageInstance.addEstimationModalWindow).toBeVisible();
     });
 
-    it('Should add Instance to Cost details after opening calculator', async () => {
-        const firstInstances = calculatorPageInstance.firstInstances;
-        await firstInstances.waitForDisplayed();
-        expect(firstInstances).toBeDisplayed();
+    test('Should be able to open "Compute Engine" screen', async () => {
+        await calculatorPageInstance.addEstimateButton.waitFor();
+        await calculatorPageInstance.addEstimateButton.click();
+
+        await calculatorPageInstance.computeEngineElement.waitFor();
+        await calculatorPageInstance.computeEngineElement.click();
+
+        await expect(calculatorPageInstance.configurationBlock).toBeVisible();
+    });
+
+    test('Should add Instance to Cost details after opening calculator', async () => {
+        await calculatorPageInstance.addEstimateButton.waitFor();
+        await calculatorPageInstance.addEstimateButton.click();
+
+        await calculatorPageInstance.computeEngineElement.waitFor();
+        await calculatorPageInstance.computeEngineElement.click();
+
+        await calculatorPageInstance.firstInstances.waitFor();
+        await expect(calculatorPageInstance.firstInstances).toBeVisible();
 
         const oneInstancesCostUSD: string = '$138.70';
-        expect(calculatorPageInstance.costInHeader).toHaveText(oneInstancesCostUSD);
+        await expect(calculatorPageInstance.costInHeader).toHaveText(oneInstancesCostUSD);
     });
 
-    it('Should be able to add two new instances', async () => {
-        const addNewInstanceButton = calculatorPageInstance.incrementInstances;
+    test('Should be able to add two new instances', async () => {
+        await calculatorPageInstance.addEstimateButton.waitFor();
+        await calculatorPageInstance.addEstimateButton.click();
+
+        await calculatorPageInstance.computeEngineElement.waitFor();
+        await calculatorPageInstance.computeEngineElement.click();
+
         for (let i = 0; i < 2; i++) {
-            await addNewInstanceButton.click();
+            await calculatorPageInstance.incrementInstances.click();
         }
 
         const threeInstancesCostUSD: string = '$417.30';
-        expect(calculatorPageInstance.costInHeader).toHaveText(threeInstancesCostUSD);
+        await expect(calculatorPageInstance.costInHeader).toHaveText(threeInstancesCostUSD);
+    });
+
+    test('Should open "Share Estimate" pop-up', async () => {
+        await calculatorPageInstance.addEstimateButton.waitFor();
+        await calculatorPageInstance.addEstimateButton.click();
+
+        await calculatorPageInstance.computeEngineElement.waitFor();
+        await calculatorPageInstance.computeEngineElement.click();
+
+        await calculatorPageInstance.shareButton.click();
+
+        await expect(calculatorPageInstance.shareEstimatePopup).toBeVisible();
+        await expect(calculatorPageInstance.openEstimationSummaryLink).toBeVisible();
+    });
+
+    test('Should open estimation summary in new tab', async () => {
+        await calculatorPageInstance.addEstimateButton.waitFor();
+        await calculatorPageInstance.addEstimateButton.click();
+
+        await calculatorPageInstance.computeEngineElement.waitFor();
+        await calculatorPageInstance.computeEngineElement.click();
+
+        await calculatorPageInstance.shareButton.click();
+
+        const [newPage] = await Promise.all([
+            page.context().waitForEvent('page'),
+            calculatorPageInstance.openEstimationSummaryLink.click(),
+        ]);
+
+        await newPage.waitForLoadState();
+        estimationPreview = new EstimationPreview(newPage);
+
+        const summary = estimationPreview.summarySection;
+        await expect(summary).toBeVisible();
+        await expect(estimationPreview.summaryCost).toHaveText('$138.70');
     });
 });
