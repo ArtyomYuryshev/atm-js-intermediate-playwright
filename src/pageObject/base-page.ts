@@ -16,4 +16,8 @@ export class BasePage {
     async close() {
         await this.page.close();
     }
+
+    public getPage(): Page {
+        return this.page;
+    }
 }

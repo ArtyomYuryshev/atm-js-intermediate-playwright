@@ -18,9 +18,12 @@ npm-debug.log*
 node_modules
 
 # Reports
-/pw-report/
+/pw-reports/
 /pw-tests-results/
 /blob-report/
 
 # Other
 /playwright/.cache/
+
+#Variables
+.env
