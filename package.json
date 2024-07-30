@@ -8,7 +8,7 @@
   "scripts": {
     "test": "npx playwright test",
     "test:head": "npx playwright test --headed",
-    "report": "npx playwright show-report pw-report",
+    "report": "npx playwright show-report pw-reports/html",
     "report:runJunit": "junit-viewer --results=pw-reports/junit/results.xml --port=3000",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write .",

@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const rpConfig = {
-    apiKey: process.env.REPORT_PORTAL_API_KEY,
+    apiKey: process.env.RP_API_KEY,
     endpoint: 'https://reportportal.epam.com/api/v1',
-    project: process.env.REPORT_PORTAL_PROJECT,
+    project: process.env.RP_PROJECT,
     launch: `ATM-INTERMEDIATE Test Run - ${new Date().toISOString()}`,
     attributes: [
         {
