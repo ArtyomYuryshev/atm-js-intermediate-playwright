@@ -27,8 +27,8 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
         await calculatorPage.computeEngineElement.waitFor();
         await calculatorPage.computeEngineElement.click();
 
-        await calculatorPage.firstInstances.waitFor();
-        await expect(calculatorPage.firstInstances).toBeVisible();
+        await calculatorPage.instanceCard.waitFor();
+        await expect(calculatorPage.instanceCard).toBeVisible();
 
         const oneInstancesCostUSD: string = '$138.70';
         await expect(calculatorPage.costInHeader).toHaveText(oneInstancesCostUSD);

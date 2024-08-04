@@ -24,6 +24,18 @@ export class CalculatorPage extends BasePage {
         return this.page.locator('//h2[text()="Compute Engine"]');
     }
 
+    get cloudStorageElement() {
+        return this.page.locator('//h2[text()="Cloud Storage"]')
+    }
+
+    get bigQueryElement() {
+        return this.page.locator('//h2[text()="BigQuery"]')
+    }
+
+    get kubernetesEngineElement() {
+        return this.page.locator('//h2[text()="Google Kubernetes Engine"]')
+    }
+
     get incrementInstances() {
         return this.page.locator('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
     }
@@ -32,8 +44,24 @@ export class CalculatorPage extends BasePage {
         return this.page.locator('.egBpsb .MyvX5d.D0aEmf');
     }
 
-    get firstInstances() {
-        return this.page.locator('div[aria-label="Edit Instances"]');
+    get costInDetails() {
+        return this.page.locator('.fbc2ib label.gt0C8e.MyvX5d.D0aEmf');
+    }
+
+    get instanceCard() {
+        return this.page.locator('div[aria-label="Edit Instances"]')
+    }
+
+    get cloudStorageCard() {
+        return this.page.locator('div[aria-label="Edit Cloud Storage"]')
+    }
+
+    get bigQueryEditionsCard() {
+        return this.page.locator('div[aria-label="Edit Editions"]')
+    }
+
+    get kubernetesEngineCard() {
+        return this.page.locator('div[aria-label="Edit GKE"]')
     }
 
     get shareButton() {
