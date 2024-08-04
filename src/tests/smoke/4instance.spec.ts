@@ -1,7 +1,9 @@
 import { test, expect } from '../fixtures';
 
 test.describe('Cloud Calculator. 4 instance Smoke', () => {
-    test('Should be able to add Compute Engine, Cloud Storage, BigQuery and Kubernetes Engine to calculator', async ({ calculatorPage }) => {
+    test('Should be able to add Compute Engine, Cloud Storage, BigQuery and Kubernetes Engine to calculator', async ({
+        calculatorPage,
+    }) => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
@@ -36,7 +38,5 @@ test.describe('Cloud Calculator. 4 instance Smoke', () => {
         await expect(calculatorPage.bigQueryEditionsCard).toBeVisible();
         await expect(calculatorPage.kubernetesEngineCard).toBeVisible();
         await expect(calculatorPage.costInDetails).toHaveText('$9,253.19');
-        
     });
-
 });
