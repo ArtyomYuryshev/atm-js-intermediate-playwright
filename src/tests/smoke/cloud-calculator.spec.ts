@@ -18,7 +18,7 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
         await expect(calculatorPage.configurationBlock).toBeVisible();
     });
 
-    test('Should add Instance to Cost details after opening calculator', async ({
+    test('Should add Instance to Cost in Header after opening calculator', async ({
         calculatorPage,
     }) => {
         await calculatorPage.addEstimateButton.waitFor();

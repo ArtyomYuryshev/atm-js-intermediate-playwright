@@ -25,15 +25,15 @@ export class CalculatorPage extends BasePage {
     }
 
     get cloudStorageElement() {
-        return this.page.locator('//h2[text()="Cloud Storage"]')
+        return this.page.locator('//h2[text()="Cloud Storage"]');
     }
 
     get bigQueryElement() {
-        return this.page.locator('//h2[text()="BigQuery"]')
+        return this.page.locator('//h2[text()="BigQuery"]');
     }
 
     get kubernetesEngineElement() {
-        return this.page.locator('//h2[text()="Google Kubernetes Engine"]')
+        return this.page.locator('//h2[text()="Google Kubernetes Engine"]');
     }
 
     get incrementInstances() {
@@ -49,19 +49,19 @@ export class CalculatorPage extends BasePage {
     }
 
     get instanceCard() {
-        return this.page.locator('div[aria-label="Edit Instances"]')
+        return this.page.locator('div[aria-label="Edit Instances"]');
     }
 
     get cloudStorageCard() {
-        return this.page.locator('div[aria-label="Edit Cloud Storage"]')
+        return this.page.locator('div[aria-label="Edit Cloud Storage"]');
     }
 
     get bigQueryEditionsCard() {
-        return this.page.locator('div[aria-label="Edit Editions"]')
+        return this.page.locator('div[aria-label="Edit Editions"]');
     }
 
     get kubernetesEngineCard() {
-        return this.page.locator('div[aria-label="Edit GKE"]')
+        return this.page.locator('div[aria-label="Edit GKE"]');
     }
 
     get shareButton() {
@@ -74,5 +74,50 @@ export class CalculatorPage extends BasePage {
 
     get openEstimationSummaryLink() {
         return this.page.locator('a[track-name="open estimate summary"]');
+    }
+
+    get machineFamilyDDL() {
+        return this.page.locator(
+            '//span[@id="c27" and text()="General Purpose"]/ancestor::div[@jsname="oYxtQd"]/ancestor::div[@jsname="wSASue"]',
+        );
+    }
+
+    get generalPurposeDDLItem() {
+        return this.page.locator(
+            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="general-purpose"]',
+        );
+    }
+
+    get computeOptimizedDDLItem() {
+        return this.page.locator(
+            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="compute-optimized"]',
+        );
+    }
+
+    // Локаторы для содержимого внутри элемента VVW32d
+    get machineTypeValue() {
+        return this.page.locator('div.VVW32d > div.D3Zlgc.MyvX5d.D0aEmf');
+    }
+
+    get vcpusAndRamText() {
+        return this.page.locator('#ow5 .U4lDT .HY0Uh:nth-of-type(4)');
+    }
+
+    get memoryOptimizedDDLItem() {
+        return this.page.locator(
+            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="memory-optimized"]',
+        );
+    }
+
+    get acceleratorOptimizedDDLItem() {
+        return this.page.locator(
+            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="accelerator-optimized"]',
+        );
+    }
+
+    get storageOptimizedDDLItem() {
+        return this.page.locator(
+            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="storage-optimized"]',
+        );
     }
 }
