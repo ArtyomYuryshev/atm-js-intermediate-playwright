@@ -1,6 +1,6 @@
 import { test, expect } from '../fixtures';
 
-test.describe('Cloud Calculator. 4 instance Smoke', () => {
+test.describe('Cloud Calculator. 4 types Smoke', () => {
     test('Should be able to add Compute Engine, Cloud Storage, BigQuery and Kubernetes Engine to calculator', async ({
         calculatorPage,
     }) => {
