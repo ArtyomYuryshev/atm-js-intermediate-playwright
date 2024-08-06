@@ -50,8 +50,8 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.costInDetails).toHaveText('$152.43');
         await expect(calculatorPage.costInHeader).toHaveText('$152.43');
 
-        await expect(calculatorPage.machineTypeBanerText).toBeVisible();
-        await expect(calculatorPage.machineTypeBanerText).toHaveText('c2-standard-4');
+        await expect(calculatorPage.machineTypeBannerText).toBeVisible();
+        await expect(calculatorPage.machineTypeBannerText).toHaveText('c2-standard-4');
 
         await expect(calculatorPage.vCPUsAndRamText).toBeVisible();
         await expect(calculatorPage.vCPUsAndRamText).toHaveText('vCPUs: 4, RAM: 16 GB');
@@ -103,7 +103,9 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.costInHeader).toHaveText('$144.14');
     });
 
-    test('Should be able to recalculate cost after editing of several fields', async ({ calculatorPage }) => {
+    test('Should be able to recalculate cost after editing of several fields', async ({
+        calculatorPage,
+    }) => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
@@ -126,7 +128,9 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.costInHeader).toHaveText('$78.92');
     });
 
-    test('Should be able to recalculate cost after multiple editing', async ({ calculatorPage }) => {
+    test('Should be able to recalculate cost after multiple editing', async ({
+        calculatorPage,
+    }) => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
@@ -149,7 +153,9 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.costInHeader).toHaveText('$150.53');
     });
 
-    test('Should be able to calculate cost after adding all Service type (Compute Engine)', async ({ calculatorPage }) => {
+    test('Should be able to calculate cost after adding all Service type (Compute Engine)', async ({
+        calculatorPage,
+    }) => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
@@ -161,15 +167,76 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.addEstimationModalWindow.waitFor();
         await calculatorPage.computeEngineElement.waitFor();
         await calculatorPage.computeEngineElement.click();
-        await calculatorPage.instanceCard.waitFor();
+        await calculatorPage.secondInstanceCard.waitFor();
 
-        
+        await calculatorPage.serviceTypeDDL.click();
+        await calculatorPage.soleTenantNodesServiceTypeDDLItem.click();
+        await calculatorPage.soleTenantNodeCard.waitFor();
 
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.secondInstanceCard.waitFor();
+
+        await calculatorPage.serviceTypeDDL.click();
+        await calculatorPage.machineImagesServiceTypeDDLItem.click();
+        await calculatorPage.machineImagesCard.waitFor();
 
         await expect(calculatorPage.instanceCard).toBeVisible();
         await expect(calculatorPage.soleTenantNodeCard).toBeVisible();
         await expect(calculatorPage.machineImagesCard).toBeVisible();
-        await expect(calculatorPage.costInDetails).toHaveText('$4,703.57');
+        await expect(calculatorPage.costInDetails).toHaveText('$282.40');
         await expect(calculatorPage.costInHeader).toHaveText('$5.00');
     });
+
+    test('Should be able to delete item from Cost Details', async ({ calculatorPage }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.threeDotsButton.click();
+        await calculatorPage.deleteItem3Dots.click();
+
+        await expect(calculatorPage.itemsDeletedNotification).toBeVisible();
+        await expect(calculatorPage.costInHeader).not.toBeVisible();
+        await expect(calculatorPage.instanceCard).not.toBeVisible();
+        await expect(calculatorPage.costInDetails).toHaveText('--');
+        await expect(calculatorPage.placeholderText).toBeVisible();
+        await expect(calculatorPage.addItemsTextBlock).toHaveText(
+            'Add items to your estimateStart adding products and services to configure your estimate.',
+        );
+    });
+
+    test('Should be able to delete group of items from Cost Details', async ({ calculatorPage }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.secondInstanceCard.waitFor();
+
+        await calculatorPage.deleteGroupButton.click();
+        await calculatorPage.confirmDeleteGroupButton.click();
+
+        await expect(calculatorPage.itemsDeletedNotification).toBeVisible();
+        await expect(calculatorPage.costInHeader).not.toBeVisible();
+        await expect(calculatorPage.instanceCard).not.toBeVisible();
+        await expect(calculatorPage.costInDetails).toHaveText('--');
+        await expect(calculatorPage.placeholderText).toBeVisible();
+        await expect(calculatorPage.addItemsTextBlock).toHaveText(
+            'Add items to your estimateStart adding products and services to configure your estimate.',
+        );
+    });
+
+    
 });

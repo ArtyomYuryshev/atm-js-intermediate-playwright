@@ -6,6 +6,10 @@ export class CalculatorPage extends BasePage {
         super(page, '/products/calculator');
     }
 
+    get itemsDeletedNotification() {
+        return this.page.locator('div.VfPpkd-YAxtVc[jsname="XxIAqe"]')
+    }
+
     // Add to this estimate pop-up
     get addEstimateButton() {
         return this.page.locator(
@@ -43,7 +47,15 @@ export class CalculatorPage extends BasePage {
     }
 
     get serviceTypeDDL() {
-        return this.page.locator('//span[@id="c2585" and text()="Service type"]/following-sibling::div[@class="VfPpkd-aPP78e"]')
+        return this.page.locator('div[jsname="HeRlU"] div.VfPpkd-aPP78e')
+    }
+
+    get soleTenantNodesServiceTypeDDLItem() {
+        return this.page.locator('//li[.//span[@class="VfPpkd-rymPhb-fpDzbe-fmcmS" and text()="Sole-Tenant Nodes"]]')
+    }
+
+    get machineImagesServiceTypeDDLItem() {
+        return this.page.locator('//li[.//span[@class="VfPpkd-rymPhb-fpDzbe-fmcmS" and text()="Machine Images"]]')
     }
 
     get numberOfInstancesIncrementButton() {
@@ -109,7 +121,7 @@ export class CalculatorPage extends BasePage {
         )
     }
 
-    get machineTypeBanerText() {
+    get machineTypeBannerText() {
         return this.page.locator('div.VVW32d > div.D3Zlgc.MyvX5d.D0aEmf');
     }
 
@@ -121,13 +133,21 @@ export class CalculatorPage extends BasePage {
         return this.page.locator('//input[@id="c40" and @class="qdOxv-fmcmS-wGMbrd"]')
     }
 
-    // Cost details
+    get addItemsTextBlock() {
+        return this.page.locator('//div[@class="lm3Nj"]')
+    }
+
+    // Cost details block
     get soleTenantNodeCard() {
         return this.page.locator('div[aria-label="Edit Sole-Tenant Nodes"]')
     }
 
     get instanceCard() {
         return this.page.locator('div[aria-label="Edit Instances"]');
+    }
+
+    get secondInstanceCard() {
+        return this.page.locator('div[aria-label="Edit Instances 2"]');
     }
 
     get machineImagesCard() {
@@ -160,5 +180,25 @@ export class CalculatorPage extends BasePage {
 
     get openEstimationSummaryLink() {
         return this.page.locator('a[track-name="open estimate summary"]');
+    }
+
+    get threeDotsButton() {
+        return this.page.locator('button.pYTkkf-Bz112c-LgbsSe[data-idom-class="yY29zb"]')
+    }
+
+    get deleteItem3Dots() {
+        return this.page.locator('//li[@jsname="UPE4nb" and .//span[text()="Delete item"]]');
+    }
+
+    get deleteGroupButton() {
+        return this.page.locator('//button[@aria-label="Delete group"]')
+    }
+
+    get confirmDeleteGroupButton() {
+        return this.page.locator('//button[@aria-label="Delete"]')
+    }
+
+    get placeholderText() {
+        return this.page.locator('//div[@class="nUZvhc"]')
     }
 }
