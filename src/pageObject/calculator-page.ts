@@ -94,8 +94,22 @@ export class CalculatorPage extends BasePage {
         );
     }
 
-    // Локаторы для содержимого внутри элемента VVW32d
-    get machineTypeValue() {
+    get machineTypeDDL() {
+        return this.page.locator('//div[@jsname="kgDJk"]//div[@jsname="oYxtQd"]//div[@class="VfPpkd-aPP78e"]'
+        )
+    }
+
+    get n1Standard1machineTypeItem() {
+        return this.page.locator('ul.VfPpkd-rymPhb.r6B9Fd.bwNLcf.P2Hi5d.VfPpkd-OJnkse > li[data-value="n1-standard-1"]'
+        )
+    }
+
+    get n1Standard2machineTypeItem() {
+        return this.page.locator('ul.VfPpkd-rymPhb.r6B9Fd.bwNLcf.P2Hi5d.VfPpkd-OJnkse > li[data-value="n1-standard-2"]'
+        )
+    }
+
+    get machineTypeBanerText() {
         return this.page.locator('div.VVW32d > div.D3Zlgc.MyvX5d.D0aEmf');
     }
 
@@ -119,5 +133,23 @@ export class CalculatorPage extends BasePage {
         return this.page.locator(
             'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="storage-optimized"]',
         );
+    }
+
+    get increaseInstancesButton() {
+        return this.page.locator(
+            '//div[@class="QiFlid"]//div[@class="BfUoNb"]//button[@class="wX4xVc-Bz112c-LgbsSe CXjg4d" and @aria-label="Increment"]',
+        );
+    }
+
+    get diskSizeInputField() {
+        return this.page.locator('//input[@id="c40" and @class="qdOxv-fmcmS-wGMbrd"]')
+    }
+
+    get osDDL() {
+        return this.page.locator('//span[text()="Operating System / Software"]/ancestor::div[contains(@class, "VfPpkd-O1htCb")]//div[contains(@class, "VfPpkd-aPP78e")]')
+    }
+
+    get osDLLUbuntuPro() {
+        return this.page.locator('div.VfPpkd-xl07Ob-XxIAqe ul.VfPpkd-rymPhb > li[data-value="paid-ubuntu-pro"]')
     }
 }
