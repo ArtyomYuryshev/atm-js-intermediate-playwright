@@ -6,6 +6,7 @@ export class CalculatorPage extends BasePage {
         super(page, '/products/calculator');
     }
 
+    // Add to this estimate pop-up
     get addEstimateButton() {
         return this.page.locator(
             '//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]',
@@ -14,10 +15,6 @@ export class CalculatorPage extends BasePage {
 
     get addEstimationModalWindow() {
         return this.page.locator('[aria-label="Add to this estimate"]');
-    }
-
-    get configurationBlock() {
-        return this.page.locator('div.U4lDT');
     }
 
     get computeEngineElement() {
@@ -36,44 +33,29 @@ export class CalculatorPage extends BasePage {
         return this.page.locator('//h2[text()="Google Kubernetes Engine"]');
     }
 
-    get incrementInstances() {
-        return this.page.locator('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
+    // Config block
+    get configurationBlock() {
+        return this.page.locator('div.U4lDT');
     }
 
     get costInHeader() {
         return this.page.locator('.egBpsb .MyvX5d.D0aEmf');
     }
 
-    get costInDetails() {
-        return this.page.locator('.fbc2ib label.gt0C8e.MyvX5d.D0aEmf');
+    get serviceTypeDDL() {
+        return this.page.locator('//span[@id="c2585" and text()="Service type"]/following-sibling::div[@class="VfPpkd-aPP78e"]')
     }
 
-    get instanceCard() {
-        return this.page.locator('div[aria-label="Edit Instances"]');
+    get numberOfInstancesIncrementButton() {
+        return this.page.locator('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
     }
 
-    get cloudStorageCard() {
-        return this.page.locator('div[aria-label="Edit Cloud Storage"]');
+    get osDDL() {
+        return this.page.locator('//span[text()="Operating System / Software"]/ancestor::div[contains(@class, "VfPpkd-O1htCb")]//div[contains(@class, "VfPpkd-aPP78e")]')
     }
 
-    get bigQueryEditionsCard() {
-        return this.page.locator('div[aria-label="Edit Editions"]');
-    }
-
-    get kubernetesEngineCard() {
-        return this.page.locator('div[aria-label="Edit GKE"]');
-    }
-
-    get shareButton() {
-        return this.page.locator('button[aria-label="Open Share Estimate dialog"]');
-    }
-
-    get shareEstimatePopup() {
-        return this.page.locator('div[jsname="rZHESd"]');
-    }
-
-    get openEstimationSummaryLink() {
-        return this.page.locator('a[track-name="open estimate summary"]');
+    get osDLLUbuntuPro() {
+        return this.page.locator('div.VfPpkd-xl07Ob-XxIAqe ul.VfPpkd-rymPhb > li[data-value="paid-ubuntu-pro"]')
     }
 
     get machineFamilyDDL() {
@@ -91,6 +73,24 @@ export class CalculatorPage extends BasePage {
     get computeOptimizedDDLItem() {
         return this.page.locator(
             'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="compute-optimized"]',
+        );
+    }
+
+    get memoryOptimizedDDLItem() {
+        return this.page.locator(
+            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="memory-optimized"]',
+        );
+    }
+
+    get acceleratorOptimizedDDLItem() {
+        return this.page.locator(
+            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="accelerator-optimized"]',
+        );
+    }
+
+    get storageOptimizedDDLItem() {
+        return this.page.locator(
+            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="storage-optimized"]',
         );
     }
 
@@ -113,43 +113,52 @@ export class CalculatorPage extends BasePage {
         return this.page.locator('div.VVW32d > div.D3Zlgc.MyvX5d.D0aEmf');
     }
 
-    get vcpusAndRamText() {
+    get vCPUsAndRamText() {
         return this.page.locator('#ow5 .U4lDT .HY0Uh:nth-of-type(4)');
-    }
-
-    get memoryOptimizedDDLItem() {
-        return this.page.locator(
-            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="memory-optimized"]',
-        );
-    }
-
-    get acceleratorOptimizedDDLItem() {
-        return this.page.locator(
-            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="accelerator-optimized"]',
-        );
-    }
-
-    get storageOptimizedDDLItem() {
-        return this.page.locator(
-            'div[jsname="xl07Ob"] ul.VfPpkd-rymPhb li[data-value="storage-optimized"]',
-        );
-    }
-
-    get increaseInstancesButton() {
-        return this.page.locator(
-            '//div[@class="QiFlid"]//div[@class="BfUoNb"]//button[@class="wX4xVc-Bz112c-LgbsSe CXjg4d" and @aria-label="Increment"]',
-        );
     }
 
     get diskSizeInputField() {
         return this.page.locator('//input[@id="c40" and @class="qdOxv-fmcmS-wGMbrd"]')
     }
 
-    get osDDL() {
-        return this.page.locator('//span[text()="Operating System / Software"]/ancestor::div[contains(@class, "VfPpkd-O1htCb")]//div[contains(@class, "VfPpkd-aPP78e")]')
+    // Cost details
+    get soleTenantNodeCard() {
+        return this.page.locator('div[aria-label="Edit Sole-Tenant Nodes"]')
     }
 
-    get osDLLUbuntuPro() {
-        return this.page.locator('div.VfPpkd-xl07Ob-XxIAqe ul.VfPpkd-rymPhb > li[data-value="paid-ubuntu-pro"]')
+    get instanceCard() {
+        return this.page.locator('div[aria-label="Edit Instances"]');
+    }
+
+    get machineImagesCard() {
+        return this.page.locator('div[aria-label="Edit Machine Images"]')
+    }
+
+    get cloudStorageCard() {
+        return this.page.locator('div[aria-label="Edit Cloud Storage"]');
+    }
+
+    get bigQueryEditionsCard() {
+        return this.page.locator('div[aria-label="Edit Editions"]');
+    }
+
+    get kubernetesEngineCard() {
+        return this.page.locator('div[aria-label="Edit GKE"]');
+    }
+
+    get costInDetails() {
+        return this.page.locator('.fbc2ib label.gt0C8e.MyvX5d.D0aEmf');
+    }
+
+    get shareButton() {
+        return this.page.locator('button[aria-label="Open Share Estimate dialog"]');
+    }
+
+    get shareEstimatePopup() {
+        return this.page.locator('div[jsname="rZHESd"]');
+    }
+
+    get openEstimationSummaryLink() {
+        return this.page.locator('a[track-name="open estimate summary"]');
     }
 }

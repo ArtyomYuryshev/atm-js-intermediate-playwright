@@ -53,8 +53,8 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.machineTypeBanerText).toBeVisible();
         await expect(calculatorPage.machineTypeBanerText).toHaveText('c2-standard-4');
 
-        await expect(calculatorPage.vcpusAndRamText).toBeVisible();
-        await expect(calculatorPage.vcpusAndRamText).toHaveText('vCPUs: 4, RAM: 16 GB');
+        await expect(calculatorPage.vCPUsAndRamText).toBeVisible();
+        await expect(calculatorPage.vCPUsAndRamText).toHaveText('vCPUs: 4, RAM: 16 GB');
     });
 
     test('Should be able to increase Instances', async ({ calculatorPage }) => {
@@ -66,7 +66,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.computeEngineElement.click();
         await calculatorPage.instanceCard.waitFor();
 
-        await calculatorPage.increaseInstancesButton.dblclick();
+        await calculatorPage.numberOfInstancesIncrementButton.dblclick();
 
         await expect(calculatorPage.costInDetails).toHaveText('$417.30');
         await expect(calculatorPage.costInHeader).toHaveText('$417.30');
@@ -115,7 +115,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.machineTypeDDL.click();
         await calculatorPage.n1Standard1machineTypeItem.click();
 
-        await calculatorPage.increaseInstancesButton.click();
+        await calculatorPage.numberOfInstancesIncrementButton.click();
 
         await calculatorPage.diskSizeInputField.fill('100');
 
@@ -137,7 +137,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
 
         await calculatorPage.machineTypeDDL.click();
         await calculatorPage.n1Standard1machineTypeItem.click();
-        await calculatorPage.increaseInstancesButton.click();
+        await calculatorPage.numberOfInstancesIncrementButton.click();
         await calculatorPage.diskSizeInputField.fill('100');
         await calculatorPage.osDDL.click();
         await calculatorPage.osDLLUbuntuPro.click();
@@ -147,5 +147,29 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
 
         await expect(calculatorPage.costInDetails).toHaveText('$150.53');
         await expect(calculatorPage.costInHeader).toHaveText('$150.53');
+    });
+
+    test('Should be able to calculate cost after adding all Service type (Compute Engine)', async ({ calculatorPage }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        
+
+
+        await expect(calculatorPage.instanceCard).toBeVisible();
+        await expect(calculatorPage.soleTenantNodeCard).toBeVisible();
+        await expect(calculatorPage.machineImagesCard).toBeVisible();
+        await expect(calculatorPage.costInDetails).toHaveText('$4,703.57');
+        await expect(calculatorPage.costInHeader).toHaveText('$5.00');
     });
 });
