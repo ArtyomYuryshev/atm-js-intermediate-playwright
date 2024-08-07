@@ -211,7 +211,9 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         );
     });
 
-    test('Should be able to delete group of items from Cost Details', async ({ calculatorPage }) => {
+    test('Should be able to delete group of items from Cost Details', async ({
+        calculatorPage,
+    }) => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
@@ -238,5 +240,123 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         );
     });
 
-    
+    test('Should to validate Number of Instances values', async ({ calculatorPage }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.numberOfInstancesInputField.fill('0');
+        await expect(calculatorPage.numberOfInstancesValidationMessage).toBeVisible();
+
+        await calculatorPage.numberOfInstancesInputField.fill('1');
+        await expect(calculatorPage.numberOfInstancesValidationMessage).not.toBeVisible();
+
+        await calculatorPage.numberOfInstancesInputField.fill('49999');
+        await expect(calculatorPage.numberOfInstancesValidationMessage).not.toBeVisible();
+
+        await calculatorPage.numberOfInstancesInputField.fill('50000');
+        await expect(calculatorPage.numberOfInstancesValidationMessage).not.toBeVisible();
+
+        await calculatorPage.numberOfInstancesInputField.fill('50001');
+        await expect(calculatorPage.numberOfInstancesValidationMessage).toBeVisible();
+    });
+
+    test('Should to be able type only numbers in Number of Instances values', async ({
+        calculatorPage,
+    }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.numberOfInstancesInputField.fill('777');
+        await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
+
+        for (const char of 'asd') {
+            await calculatorPage.numberOfInstancesInputField.press(char);
+        }
+        await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
+
+        for (const char of 'ASD') {
+            await calculatorPage.numberOfInstancesInputField.press(char);
+        }
+        await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
+
+        for (const char of '/*-') {
+            await calculatorPage.numberOfInstancesInputField.press(char);
+        }
+        await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
+
+        for (const char of '-777/*-ASD') {
+            await calculatorPage.numberOfInstancesInputField.press(char);
+        }
+        await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777777');
+    });
+
+    test('Should to validate Boot Disk Size values', async ({ calculatorPage }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.diskSizeInputField.fill('0');
+        await expect(calculatorPage.diskSizeValidationMessage).not.toBeVisible();
+
+        await calculatorPage.diskSizeInputField.fill('1');
+        await expect(calculatorPage.diskSizeValidationMessage).not.toBeVisible();
+
+        await calculatorPage.diskSizeInputField.fill('65535');
+        await expect(calculatorPage.diskSizeValidationMessage).not.toBeVisible();
+
+        await calculatorPage.diskSizeInputField.fill('65536');
+        await expect(calculatorPage.diskSizeValidationMessage).not.toBeVisible();
+
+        await calculatorPage.diskSizeInputField.fill('65537');
+        await expect(calculatorPage.diskSizeValidationMessage).toBeVisible();
+    });
+
+    test('Should to be able type only numbers in Boot Disk Size InputField values', async ({
+        calculatorPage,
+    }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.diskSizeInputField.fill('777');
+        await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
+
+        for (const char of 'asd') {
+            await calculatorPage.diskSizeInputField.press(char);
+        }
+        await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
+
+        for (const char of 'ASD') {
+            await calculatorPage.diskSizeInputField.press(char);
+        }
+        await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
+
+        for (const char of '/*-') {
+            await calculatorPage.diskSizeInputField.press(char);
+        }
+        await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
+
+        for (const char of '-777/*-ASD') {
+            await calculatorPage.diskSizeInputField.press(char);
+        }
+        await expect(calculatorPage.diskSizeInputField).toHaveValue('777777');
+    });
 });

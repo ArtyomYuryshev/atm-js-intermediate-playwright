@@ -7,7 +7,7 @@ export class CalculatorPage extends BasePage {
     }
 
     get itemsDeletedNotification() {
-        return this.page.locator('div.VfPpkd-YAxtVc[jsname="XxIAqe"]')
+        return this.page.locator('div.VfPpkd-YAxtVc[jsname="XxIAqe"]');
     }
 
     // Add to this estimate pop-up
@@ -47,27 +47,47 @@ export class CalculatorPage extends BasePage {
     }
 
     get serviceTypeDDL() {
-        return this.page.locator('div[jsname="HeRlU"] div.VfPpkd-aPP78e')
+        return this.page.locator('div[jsname="HeRlU"] div.VfPpkd-aPP78e');
     }
 
     get soleTenantNodesServiceTypeDDLItem() {
-        return this.page.locator('//li[.//span[@class="VfPpkd-rymPhb-fpDzbe-fmcmS" and text()="Sole-Tenant Nodes"]]')
+        return this.page.locator(
+            '//li[.//span[@class="VfPpkd-rymPhb-fpDzbe-fmcmS" and text()="Sole-Tenant Nodes"]]',
+        );
     }
 
     get machineImagesServiceTypeDDLItem() {
-        return this.page.locator('//li[.//span[@class="VfPpkd-rymPhb-fpDzbe-fmcmS" and text()="Machine Images"]]')
+        return this.page.locator(
+            '//li[.//span[@class="VfPpkd-rymPhb-fpDzbe-fmcmS" and text()="Machine Images"]]',
+        );
     }
 
     get numberOfInstancesIncrementButton() {
         return this.page.locator('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
     }
 
+    get numberOfInstancesInputField() {
+        return this.page.locator(
+            '//div[@class="QiFlid"]//input[@jsname="YPqjbf" and @type="number" and @class="qdOxv-fmcmS-wGMbrd"]',
+        );
+    }
+
+    get numberOfInstancesValidationMessage() {
+        return this.page.locator(
+            '//div[@class="SozLZd"]//span[contains(@class, "TlwJTe") and contains(@class, "HY0Uh") and text()="Value needs to be greater than 0 and less than or equal to 50,000"]',
+        );
+    }
+
     get osDDL() {
-        return this.page.locator('//span[text()="Operating System / Software"]/ancestor::div[contains(@class, "VfPpkd-O1htCb")]//div[contains(@class, "VfPpkd-aPP78e")]')
+        return this.page.locator(
+            '//span[text()="Operating System / Software"]/ancestor::div[contains(@class, "VfPpkd-O1htCb")]//div[contains(@class, "VfPpkd-aPP78e")]',
+        );
     }
 
     get osDLLUbuntuPro() {
-        return this.page.locator('div.VfPpkd-xl07Ob-XxIAqe ul.VfPpkd-rymPhb > li[data-value="paid-ubuntu-pro"]')
+        return this.page.locator(
+            'div.VfPpkd-xl07Ob-XxIAqe ul.VfPpkd-rymPhb > li[data-value="paid-ubuntu-pro"]',
+        );
     }
 
     get machineFamilyDDL() {
@@ -107,18 +127,21 @@ export class CalculatorPage extends BasePage {
     }
 
     get machineTypeDDL() {
-        return this.page.locator('//div[@jsname="kgDJk"]//div[@jsname="oYxtQd"]//div[@class="VfPpkd-aPP78e"]'
-        )
+        return this.page.locator(
+            '//div[@jsname="kgDJk"]//div[@jsname="oYxtQd"]//div[@class="VfPpkd-aPP78e"]',
+        );
     }
 
     get n1Standard1machineTypeItem() {
-        return this.page.locator('ul.VfPpkd-rymPhb.r6B9Fd.bwNLcf.P2Hi5d.VfPpkd-OJnkse > li[data-value="n1-standard-1"]'
-        )
+        return this.page.locator(
+            'ul.VfPpkd-rymPhb.r6B9Fd.bwNLcf.P2Hi5d.VfPpkd-OJnkse > li[data-value="n1-standard-1"]',
+        );
     }
 
     get n1Standard2machineTypeItem() {
-        return this.page.locator('ul.VfPpkd-rymPhb.r6B9Fd.bwNLcf.P2Hi5d.VfPpkd-OJnkse > li[data-value="n1-standard-2"]'
-        )
+        return this.page.locator(
+            'ul.VfPpkd-rymPhb.r6B9Fd.bwNLcf.P2Hi5d.VfPpkd-OJnkse > li[data-value="n1-standard-2"]',
+        );
     }
 
     get machineTypeBannerText() {
@@ -130,16 +153,22 @@ export class CalculatorPage extends BasePage {
     }
 
     get diskSizeInputField() {
-        return this.page.locator('//input[@id="c40" and @class="qdOxv-fmcmS-wGMbrd"]')
+        return this.page.locator('//input[@id="c40" and @class="qdOxv-fmcmS-wGMbrd"]');
+    }
+
+    get diskSizeValidationMessage() {
+        return this.page.locator(
+            '//span[@class="BpFoRd HY0Uh" and text()="Value needs to be greater than 0 and less than or equal to 65,536 GiB"]',
+        );
     }
 
     get addItemsTextBlock() {
-        return this.page.locator('//div[@class="lm3Nj"]')
+        return this.page.locator('//div[@class="lm3Nj"]');
     }
 
     // Cost details block
     get soleTenantNodeCard() {
-        return this.page.locator('div[aria-label="Edit Sole-Tenant Nodes"]')
+        return this.page.locator('div[aria-label="Edit Sole-Tenant Nodes"]');
     }
 
     get instanceCard() {
@@ -151,7 +180,7 @@ export class CalculatorPage extends BasePage {
     }
 
     get machineImagesCard() {
-        return this.page.locator('div[aria-label="Edit Machine Images"]')
+        return this.page.locator('div[aria-label="Edit Machine Images"]');
     }
 
     get cloudStorageCard() {
@@ -183,7 +212,7 @@ export class CalculatorPage extends BasePage {
     }
 
     get threeDotsButton() {
-        return this.page.locator('button.pYTkkf-Bz112c-LgbsSe[data-idom-class="yY29zb"]')
+        return this.page.locator('button.pYTkkf-Bz112c-LgbsSe[data-idom-class="yY29zb"]');
     }
 
     get deleteItem3Dots() {
@@ -191,14 +220,14 @@ export class CalculatorPage extends BasePage {
     }
 
     get deleteGroupButton() {
-        return this.page.locator('//button[@aria-label="Delete group"]')
+        return this.page.locator('//button[@aria-label="Delete group"]');
     }
 
     get confirmDeleteGroupButton() {
-        return this.page.locator('//button[@aria-label="Delete"]')
+        return this.page.locator('//button[@aria-label="Delete"]');
     }
 
     get placeholderText() {
-        return this.page.locator('//div[@class="nUZvhc"]')
+        return this.page.locator('//div[@class="nUZvhc"]');
     }
 }
