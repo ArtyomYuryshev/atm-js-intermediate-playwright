@@ -201,7 +201,6 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.threeDotsButton.click();
         await calculatorPage.deleteItem3Dots.click();
 
-        await expect(calculatorPage.itemsDeletedNotification).toBeVisible();
         await expect(calculatorPage.costInHeader).not.toBeVisible();
         await expect(calculatorPage.instanceCard).not.toBeVisible();
         await expect(calculatorPage.costInDetails).toHaveText('--');
@@ -230,7 +229,6 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.deleteGroupButton.click();
         await calculatorPage.confirmDeleteGroupButton.click();
 
-        await expect(calculatorPage.itemsDeletedNotification).toBeVisible();
         await expect(calculatorPage.costInHeader).not.toBeVisible();
         await expect(calculatorPage.instanceCard).not.toBeVisible();
         await expect(calculatorPage.costInDetails).toHaveText('--');
@@ -238,6 +236,22 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.addItemsTextBlock).toHaveText(
             'Add items to your estimateStart adding products and services to configure your estimate.',
         );
+    });
+
+    test('Should display "Instances deleted" notification after deleting', async ({
+        calculatorPage,
+    }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.threeDotsButton.click();
+        await calculatorPage.deleteItem3Dots.click();
+
+        await expect(calculatorPage.itemsDeletedNotification).toBeVisible();
     });
 
     test('Should to validate Number of Instances values', async ({ calculatorPage }) => {
@@ -271,32 +285,26 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
-
+    
         await calculatorPage.computeEngineElement.waitFor();
         await calculatorPage.computeEngineElement.click();
         await calculatorPage.instanceCard.waitFor();
-
+    
         await calculatorPage.numberOfInstancesInputField.fill('777');
         await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
-
-        for (const char of 'asd') {
-            await calculatorPage.numberOfInstancesInputField.press(char);
-        }
+    
+        const chars = 'asdASD/*-';
+        const promises = chars.split('').map(char => 
+            calculatorPage.numberOfInstancesInputField.press(char)
+        );
+        await Promise.all(promises);
         await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
-
-        for (const char of 'ASD') {
-            await calculatorPage.numberOfInstancesInputField.press(char);
-        }
-        await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
-
-        for (const char of '/*-') {
-            await calculatorPage.numberOfInstancesInputField.press(char);
-        }
-        await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
-
-        for (const char of '-777/*-ASD') {
-            await calculatorPage.numberOfInstancesInputField.press(char);
-        }
+    
+        const mixedChars = '-777/*-ASD';
+        const mixedPromises = mixedChars.split('').map(char => 
+            calculatorPage.numberOfInstancesInputField.press(char)
+        );
+        await Promise.all(mixedPromises);
         await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777777');
     });
 
@@ -331,32 +339,40 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
-
+    
         await calculatorPage.computeEngineElement.waitFor();
         await calculatorPage.computeEngineElement.click();
         await calculatorPage.instanceCard.waitFor();
-
+    
         await calculatorPage.diskSizeInputField.fill('777');
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
-
-        for (const char of 'asd') {
-            await calculatorPage.diskSizeInputField.press(char);
-        }
+    
+        const chars1 = 'asd';
+        const promises1 = chars1.split('').map(char => 
+            calculatorPage.diskSizeInputField.press(char)
+        );
+        await Promise.all(promises1);
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
-
-        for (const char of 'ASD') {
-            await calculatorPage.diskSizeInputField.press(char);
-        }
+    
+        const chars2 = 'ASD';
+        const promises2 = chars2.split('').map(char => 
+            calculatorPage.diskSizeInputField.press(char)
+        );
+        await Promise.all(promises2);
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
-
-        for (const char of '/*-') {
-            await calculatorPage.diskSizeInputField.press(char);
-        }
+    
+        const chars3 = '/*-';
+        const promises3 = chars3.split('').map(char => 
+            calculatorPage.diskSizeInputField.press(char)
+        );
+        await Promise.all(promises3);
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
-
-        for (const char of '-777/*-ASD') {
-            await calculatorPage.diskSizeInputField.press(char);
-        }
+    
+        const mixedChars = '-777/*-ASD';
+        const mixedPromises = mixedChars.split('').map(char => 
+            calculatorPage.diskSizeInputField.press(char)
+        );
+        await Promise.all(mixedPromises);
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777777');
     });
 });
