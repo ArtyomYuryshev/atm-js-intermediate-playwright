@@ -204,7 +204,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.costInHeader).not.toBeVisible();
         await expect(calculatorPage.instanceCard).not.toBeVisible();
         await expect(calculatorPage.costInDetails).toHaveText('--');
-        await expect(calculatorPage.placeholderText).toBeVisible();
+        await expect(calculatorPage.placeholderTextEmptyCostDetails).toBeVisible();
         await expect(calculatorPage.addItemsTextBlock).toHaveText(
             'Add items to your estimateStart adding products and services to configure your estimate.',
         );
@@ -232,10 +232,28 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.costInHeader).not.toBeVisible();
         await expect(calculatorPage.instanceCard).not.toBeVisible();
         await expect(calculatorPage.costInDetails).toHaveText('--');
-        await expect(calculatorPage.placeholderText).toBeVisible();
+        await expect(calculatorPage.placeholderTextEmptyCostDetails).toBeVisible();
         await expect(calculatorPage.addItemsTextBlock).toHaveText(
             'Add items to your estimateStart adding products and services to configure your estimate.',
         );
+    });
+
+    test('Should be able to cancel of deleting group of items', async ({ calculatorPage }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.secondInstanceCard.waitFor();
+        await calculatorPage.deleteGroupButton.click();
+
+        await expect(calculatorPage.deleteGroupConfirmationPopUp).toBeVisible();
     });
 
     test('Should display "Instances deleted" notification after deleting', async ({
@@ -252,6 +270,27 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.deleteItem3Dots.click();
 
         await expect(calculatorPage.itemsDeletedNotification).toBeVisible();
+    });
+
+    test('Should be able to undo deleting', async ({ calculatorPage }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.threeDotsButton.click();
+        await calculatorPage.deleteItem3Dots.click();
+
+        await calculatorPage.undoDeleteButton.click();
+
+        await expect(calculatorPage.itemsDeletedNotification).not.toBeVisible();
+        await expect(calculatorPage.placeholderTextEmptyCostDetails).not.toBeVisible();
+        await expect(calculatorPage.addItemsTextBlock).not.toBeVisible();
+        await expect(calculatorPage.instanceCard).toBeVisible();
+        await expect(calculatorPage.costInHeader).toHaveText('$138.70');
+        await expect(calculatorPage.costInDetails).toHaveText('$138.70');
     });
 
     test('Should to validate Number of Instances values', async ({ calculatorPage }) => {
@@ -285,25 +324,25 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
-    
+
         await calculatorPage.computeEngineElement.waitFor();
         await calculatorPage.computeEngineElement.click();
         await calculatorPage.instanceCard.waitFor();
-    
+
         await calculatorPage.numberOfInstancesInputField.fill('777');
         await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
-    
+
         const chars = 'asdASD/*-';
-        const promises = chars.split('').map(char => 
-            calculatorPage.numberOfInstancesInputField.press(char)
-        );
+        const promises = chars
+            .split('')
+            .map((char) => calculatorPage.numberOfInstancesInputField.press(char));
         await Promise.all(promises);
         await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777');
-    
+
         const mixedChars = '-777/*-ASD';
-        const mixedPromises = mixedChars.split('').map(char => 
-            calculatorPage.numberOfInstancesInputField.press(char)
-        );
+        const mixedPromises = mixedChars
+            .split('')
+            .map((char) => calculatorPage.numberOfInstancesInputField.press(char));
         await Promise.all(mixedPromises);
         await expect(calculatorPage.numberOfInstancesInputField).toHaveValue('777777');
     });
@@ -339,40 +378,71 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.addEstimateButton.waitFor();
         await calculatorPage.addEstimateButton.click();
         await calculatorPage.addEstimationModalWindow.waitFor();
-    
+
         await calculatorPage.computeEngineElement.waitFor();
         await calculatorPage.computeEngineElement.click();
         await calculatorPage.instanceCard.waitFor();
-    
+
         await calculatorPage.diskSizeInputField.fill('777');
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
-    
+
         const chars1 = 'asd';
-        const promises1 = chars1.split('').map(char => 
-            calculatorPage.diskSizeInputField.press(char)
-        );
+        const promises1 = chars1
+            .split('')
+            .map((char) => calculatorPage.diskSizeInputField.press(char));
         await Promise.all(promises1);
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
-    
+
         const chars2 = 'ASD';
-        const promises2 = chars2.split('').map(char => 
-            calculatorPage.diskSizeInputField.press(char)
-        );
+        const promises2 = chars2
+            .split('')
+            .map((char) => calculatorPage.diskSizeInputField.press(char));
         await Promise.all(promises2);
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
-    
+
         const chars3 = '/*-';
-        const promises3 = chars3.split('').map(char => 
-            calculatorPage.diskSizeInputField.press(char)
-        );
+        const promises3 = chars3
+            .split('')
+            .map((char) => calculatorPage.diskSizeInputField.press(char));
         await Promise.all(promises3);
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777');
-    
+
         const mixedChars = '-777/*-ASD';
-        const mixedPromises = mixedChars.split('').map(char => 
-            calculatorPage.diskSizeInputField.press(char)
-        );
+        const mixedPromises = mixedChars
+            .split('')
+            .map((char) => calculatorPage.diskSizeInputField.press(char));
         await Promise.all(mixedPromises);
         await expect(calculatorPage.diskSizeInputField).toHaveValue('777777');
+    });
+
+    test('Should to check info button for "Number of instances"', async ({ calculatorPage }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.numberOfInstancesInfoButton.click();
+
+        await expect(calculatorPage.numberOfInstancesInfoPopover).toBeVisible();
+    });
+
+    test('Should be abele to change currency', async ({
+        calculatorPage,
+    }) => {
+        await calculatorPage.addEstimateButton.waitFor();
+        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimationModalWindow.waitFor();
+
+        await calculatorPage.computeEngineElement.waitFor();
+        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.instanceCard.waitFor();
+
+        await calculatorPage.currencyDDLButton.click();
+        await calculatorPage.euroDDLitem.click();
+
+        await expect(calculatorPage.costInDetails).toHaveText('€128.28');
+        await expect(calculatorPage.costInHeader).toHaveText('€128.28');
     });
 });

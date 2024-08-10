@@ -66,6 +66,18 @@ export class CalculatorPage extends BasePage {
         return this.page.locator('.QiFlid [aria-label="Increment"] .wX4xVc-Bz112c-RLmnJb');
     }
 
+    get numberOfInstancesInfoButton() {
+        return this.page.locator(
+            '//div[@class="QiFlid"]//button[@class="pYTkkf-Bz112c-LgbsSe lUTu5e"]',
+        );
+    }
+
+    get numberOfInstancesInfoPopover() {
+        return this.page.locator(
+            '//div[@class="zVcOL" and .//div[@class="zv7tnb ZF0dQe D0aEmf" and text()="Number of Instances"] and .//div[@class="OL1HKc" and text()="This is the number of virtual machines you want to create."]]',
+        );
+    }
+
     get numberOfInstancesInputField() {
         return this.page.locator(
             '//div[@class="QiFlid"]//input[@jsname="YPqjbf" and @type="number" and @class="qdOxv-fmcmS-wGMbrd"]',
@@ -167,6 +179,16 @@ export class CalculatorPage extends BasePage {
     }
 
     // Cost details block
+    get currencyDDLButton() {
+        return this.page.locator('//button[@data-tooltip-id="currency-selector-button"]');
+    }
+
+    get euroDDLitem() {
+        return this.page.locator(
+            '//ul[@class="W7g1Rb-rymPhb O68mGe-hqgu2c"]/li/ul/li[@data-value="EUR"]',
+        );
+    }
+
     get soleTenantNodeCard() {
         return this.page.locator('div[aria-label="Edit Sole-Tenant Nodes"]');
     }
@@ -223,11 +245,21 @@ export class CalculatorPage extends BasePage {
         return this.page.locator('//button[@aria-label="Delete group"]');
     }
 
+    get deleteGroupConfirmationPopUp() {
+        return this.page.locator(
+            '//div[@class="bwApif-P5QLlc" and @aria-modal="true" and @role="dialog"]',
+        );
+    }
+
     get confirmDeleteGroupButton() {
         return this.page.locator('//button[@aria-label="Delete"]');
     }
 
-    get placeholderText() {
+    get undoDeleteButton() {
+        return this.page.locator('button[jsname="XTYNyb"][aria-label="Undo"]');
+    }
+
+    get placeholderTextEmptyCostDetails() {
         return this.page.locator('//div[@class="nUZvhc"]');
     }
 }
