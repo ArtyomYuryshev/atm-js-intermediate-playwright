@@ -1,2 +1,2 @@
-export { CalculatorPage } from './calculator-page';
-export { EstimationPreview } from './estimation-preview';
+export { CalculatorPage } from './pages/calculator-page';
+export { EstimationPreview } from './pages/estimation-preview';
