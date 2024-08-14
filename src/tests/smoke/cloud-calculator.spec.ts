@@ -1,16 +1,17 @@
 import { test, expect } from '../fixtures';
+import { waitAndClick } from '../../utils/helpers';
 
 test.describe('Cloud Calculator. Compute Engine Smoke', () => {
-    test('Should be able to open "Add to this estimate" pop-up', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
+    test.beforeEach(async ({ calculatorPage }) => {
+        await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
+    });
 
+    test('Should be able to open "Add to this estimate" pop-up', async ({ calculatorPage }) => {
         await expect(calculatorPage.addEstimatePopup.addEstimationModalWindow).toBeVisible();
     });
 
     test('Should be able to open "Compute Engine" screen', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
 
         await expect(calculatorPage.configurationComponent.configurationBlock).toBeVisible();
     });
@@ -18,9 +19,7 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
     test('Should add Instance to Cost in Header after opening calculator', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
 
         await calculatorPage.costDetails.instanceCard.waitFor();
         await expect(calculatorPage.costDetails.instanceCard).toBeVisible();
@@ -32,9 +31,7 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
     });
 
     test('Should be able to add two new instances', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
 
         await calculatorPage.configurationComponent.numberOfInstancesIncrementButton.dblclick();
 
@@ -45,9 +42,7 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
     });
 
     test('Should open "Share Estimate" pop-up', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
 
         await calculatorPage.costDetails.shareButton.click();
 
@@ -59,9 +54,7 @@ test.describe('Cloud Calculator. Compute Engine Smoke', () => {
         calculatorPage,
         estimationPreview,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
 
         await calculatorPage.costDetails.shareButton.click();
 

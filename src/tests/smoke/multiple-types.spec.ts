@@ -1,31 +1,32 @@
 import { test, expect } from '../fixtures';
+import { waitAndClick } from '../../utils/helpers';
 
 test.describe('Cloud Calculator. 4 types Smoke', () => {
     test('Should be able to add Compute Engine, Cloud Storage, BigQuery and Kubernetes Engine to calculator', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
+        await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.addEstimatePopup.addEstimateButton.click();
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.cloudStorageElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.cloudStorageElement);
         await calculatorPage.costDetails.cloudStorageCard.waitFor();
 
         await calculatorPage.addEstimatePopup.addEstimateButton.click();
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.bigQueryElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.bigQueryElement);
         await calculatorPage.costDetails.bigQueryEditionsCard.waitFor();
 
         await calculatorPage.addEstimatePopup.addEstimateButton.click();
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.kubernetesEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.kubernetesEngineElement);
         await calculatorPage.costDetails.kubernetesEngineCard.waitFor();
 
         await expect(calculatorPage.costDetails.instanceCard).toBeVisible();

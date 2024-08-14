@@ -1,4 +1,4 @@
-import { Page, Locator } from 'playwright';
+import { Page } from 'playwright';
 
 export class BasePage {
     protected readonly page: Page;
@@ -19,10 +19,5 @@ export class BasePage {
 
     public getPage(): Page {
         return this.page;
-    }
-
-    async waitAndClick(locator: Locator) {
-        await locator.waitFor();
-        await locator.click();
     }
 }

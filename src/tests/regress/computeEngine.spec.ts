@@ -1,13 +1,16 @@
 import { test, expect } from '../fixtures';
+import { waitAndClick, fillWithChars } from '../../utils/helpers';
 
 test.describe('Cloud Calculator. Compute Engine Regress', () => {
+    test.beforeEach(async ({ calculatorPage }) => {
+        await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
+        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
+    });
+
     test('Should add Instance to Estimated cost after opening calculator', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await expect(calculatorPage.costDetails.instanceCard).toBeVisible();
@@ -15,10 +18,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should to check Machine Family drill-down content', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.machineFamilyDDL.click();
@@ -33,10 +33,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should be able to change Machine Family', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.machineFamilyDDL.click();
@@ -58,10 +55,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should be able to increase Instances', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.numberOfInstancesIncrementButton.dblclick();
@@ -71,10 +65,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should be able to change Boot disk size', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.diskSizeInputField.fill('777');
@@ -84,10 +75,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should be able to change OS', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.osDDL.click();
@@ -100,10 +88,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     test('Should be able to recalculate cost after editing of several fields', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.machineTypeDDL.click();
@@ -123,10 +108,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     test('Should be able to recalculate cost after multiple editing', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.machineTypeDDL.click();
@@ -146,14 +128,12 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     test('Should be able to calculate cost after adding all Service type (Compute Engine)', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.addEstimatePopup.addEstimateButton.click();
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.secondInstanceCard.waitFor();
 
         await calculatorPage.configurationComponent.serviceTypeDDL.click();
@@ -162,7 +142,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
 
         await calculatorPage.addEstimatePopup.addEstimateButton.click();
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.secondInstanceCard.waitFor();
 
         await calculatorPage.configurationComponent.serviceTypeDDL.click();
@@ -177,9 +157,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should be able to delete item from Cost Details', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.costDetails.threeDotsButton.click();
@@ -197,14 +175,12 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     test('Should be able to delete group of items from Cost Details', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.addEstimatePopup.addEstimateButton.click();
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.secondInstanceCard.waitFor();
 
         await calculatorPage.costDetails.deleteGroupButton.click();
@@ -220,14 +196,12 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should be able to cancel of deleting group of items', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.addEstimatePopup.addEstimateButton.click();
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.secondInstanceCard.waitFor();
         await calculatorPage.costDetails.deleteGroupButton.click();
 
@@ -237,9 +211,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     test('Should display "Instances deleted" notification after deleting', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.costDetails.threeDotsButton.click();
@@ -249,9 +221,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should be able to undo deleting', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.costDetails.threeDotsButton.click();
@@ -268,10 +238,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should to validate Number of Instances values', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.numberOfInstancesInputField.fill('0');
@@ -303,10 +270,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     test('Should to be able type only numbers in Number of Instances values', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.numberOfInstancesInputField.fill('777');
@@ -314,34 +278,41 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
             '777',
         );
 
-        const chars = 'asdASD/*-';
-        const promises = chars
-            .split('')
-            .map((char) =>
-                calculatorPage.configurationComponent.numberOfInstancesInputField.press(char),
-            );
-        await Promise.all(promises);
+        await fillWithChars(
+            calculatorPage.configurationComponent.numberOfInstancesInputField,
+            'asd',
+        );
         await expect(calculatorPage.configurationComponent.numberOfInstancesInputField).toHaveValue(
             '777',
         );
 
-        const mixedChars = '-777/*-ASD';
-        const mixedPromises = mixedChars
-            .split('')
-            .map((char) =>
-                calculatorPage.configurationComponent.numberOfInstancesInputField.press(char),
-            );
-        await Promise.all(mixedPromises);
+        await fillWithChars(
+            calculatorPage.configurationComponent.numberOfInstancesInputField,
+            'ASD',
+        );
+        await expect(calculatorPage.configurationComponent.numberOfInstancesInputField).toHaveValue(
+            '777',
+        );
+
+        await fillWithChars(
+            calculatorPage.configurationComponent.numberOfInstancesInputField,
+            '/*-',
+        );
+        await expect(calculatorPage.configurationComponent.numberOfInstancesInputField).toHaveValue(
+            '777',
+        );
+
+        await fillWithChars(
+            calculatorPage.configurationComponent.numberOfInstancesInputField,
+            '-777/*-ASD',
+        );
         await expect(calculatorPage.configurationComponent.numberOfInstancesInputField).toHaveValue(
             '777777',
         );
     });
 
     test('Should to validate Boot Disk Size values', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         // bug in app. will fall here. 14.08.2024
@@ -370,50 +341,29 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     test('Should to be able type only numbers in Boot Disk Size InputField values', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.diskSizeInputField.fill('777');
         await expect(calculatorPage.configurationComponent.diskSizeInputField).toHaveValue('777');
 
-        const chars1 = 'asd';
-        const promises1 = chars1
-            .split('')
-            .map((char) => calculatorPage.configurationComponent.diskSizeInputField.press(char));
-        await Promise.all(promises1);
+        await fillWithChars(calculatorPage.configurationComponent.diskSizeInputField, 'asd');
         await expect(calculatorPage.configurationComponent.diskSizeInputField).toHaveValue('777');
 
-        const chars2 = 'ASD';
-        const promises2 = chars2
-            .split('')
-            .map((char) => calculatorPage.configurationComponent.diskSizeInputField.press(char));
-        await Promise.all(promises2);
+        await fillWithChars(calculatorPage.configurationComponent.diskSizeInputField, 'ASD');
         await expect(calculatorPage.configurationComponent.diskSizeInputField).toHaveValue('777');
 
-        const chars3 = '/*-';
-        const promises3 = chars3
-            .split('')
-            .map((char) => calculatorPage.configurationComponent.diskSizeInputField.press(char));
-        await Promise.all(promises3);
+        await fillWithChars(calculatorPage.configurationComponent.diskSizeInputField, '/*-');
         await expect(calculatorPage.configurationComponent.diskSizeInputField).toHaveValue('777');
 
-        const mixedChars = '-777/*-ASD';
-        const mixedPromises = mixedChars
-            .split('')
-            .map((char) => calculatorPage.configurationComponent.diskSizeInputField.press(char));
-        await Promise.all(mixedPromises);
+        await fillWithChars(calculatorPage.configurationComponent.diskSizeInputField, '-777/*-ASD');
         await expect(calculatorPage.configurationComponent.diskSizeInputField).toHaveValue(
             '777777',
         );
     });
 
     test('Should to check info button for "Number of instances"', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.configurationComponent.numberOfInstancesInfoButton.click();
@@ -424,10 +374,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
     });
 
     test('Should be able to change currency', async ({ calculatorPage }) => {
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
-
-        await calculatorPage.waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
+        await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
         await calculatorPage.costDetails.currencyDDLButton.click();
