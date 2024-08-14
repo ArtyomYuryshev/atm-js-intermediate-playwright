@@ -12,4 +12,8 @@ export class DeleteGroupPopupComponent {
     get confirmDeleteGroupButton() {
         return this.page.locator('//button[@aria-label="Delete"]');
     }
+
+    get cancelDeleteGroupButton() {
+        return this.page.locator('button.mUIrbf-LgbsSe[data-mdc-dialog-action="cancel"]');
+    }
 }
