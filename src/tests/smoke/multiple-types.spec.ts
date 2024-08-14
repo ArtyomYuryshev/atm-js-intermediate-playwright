@@ -4,39 +4,39 @@ test.describe('Cloud Calculator. 4 types Smoke', () => {
     test('Should be able to add Compute Engine, Cloud Storage, BigQuery and Kubernetes Engine to calculator', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.addEstimateButton.waitFor();
-        await calculatorPage.addEstimateButton.click();
-        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
-        await calculatorPage.computeEngineElement.waitFor();
-        await calculatorPage.computeEngineElement.click();
-        await calculatorPage.instanceCard.waitFor();
+        await calculatorPage.addEstimatePopup.computeEngineElement.waitFor();
+        await calculatorPage.addEstimatePopup.computeEngineElement.click();
+        await calculatorPage.costDetails.instanceCard.waitFor();
 
-        await calculatorPage.addEstimateButton.click();
-        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
-        await calculatorPage.cloudStorageElement.waitFor();
-        await calculatorPage.cloudStorageElement.click();
-        await calculatorPage.cloudStorageCard.waitFor();
+        await calculatorPage.addEstimatePopup.cloudStorageElement.waitFor();
+        await calculatorPage.addEstimatePopup.cloudStorageElement.click();
+        await calculatorPage.costDetails.cloudStorageCard.waitFor();
 
-        await calculatorPage.addEstimateButton.click();
-        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
-        await calculatorPage.bigQueryElement.waitFor();
-        await calculatorPage.bigQueryElement.click();
-        await calculatorPage.bigQueryEditionsCard.waitFor();
+        await calculatorPage.addEstimatePopup.bigQueryElement.waitFor();
+        await calculatorPage.addEstimatePopup.bigQueryElement.click();
+        await calculatorPage.costDetails.bigQueryEditionsCard.waitFor();
 
-        await calculatorPage.addEstimateButton.click();
-        await calculatorPage.addEstimationModalWindow.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
-        await calculatorPage.kubernetesEngineElement.waitFor();
-        await calculatorPage.kubernetesEngineElement.click();
-        await calculatorPage.kubernetesEngineCard.waitFor();
+        await calculatorPage.addEstimatePopup.kubernetesEngineElement.waitFor();
+        await calculatorPage.addEstimatePopup.kubernetesEngineElement.click();
+        await calculatorPage.costDetails.kubernetesEngineCard.waitFor();
 
-        await expect(calculatorPage.instanceCard).toBeVisible();
-        await expect(calculatorPage.cloudStorageCard).toBeVisible();
-        await expect(calculatorPage.bigQueryEditionsCard).toBeVisible();
-        await expect(calculatorPage.kubernetesEngineCard).toBeVisible();
-        await expect(calculatorPage.costInDetails).toHaveText('$9,253.19');
+        await expect(calculatorPage.costDetails.instanceCard).toBeVisible();
+        await expect(calculatorPage.costDetails.cloudStorageCard).toBeVisible();
+        await expect(calculatorPage.costDetails.bigQueryEditionsCard).toBeVisible();
+        await expect(calculatorPage.costDetails.kubernetesEngineCard).toBeVisible();
+        await expect(calculatorPage.costDetails.costInDetails).toHaveText('$9,253.19');
     });
 });

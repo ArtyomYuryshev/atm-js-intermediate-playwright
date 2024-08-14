@@ -2,79 +2,83 @@ import { test, expect } from '../fixtures';
 
 test.describe('Cloud Calculator. Compute Engine Smoke', () => {
     test('Should be able to open "Add to this estimate" pop-up', async ({ calculatorPage }) => {
-        await calculatorPage.addEstimateButton.waitFor();
-        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
 
-        await expect(calculatorPage.addEstimationModalWindow).toBeVisible();
+        await expect(calculatorPage.addEstimatePopup.addEstimationModalWindow).toBeVisible();
     });
 
     test('Should be able to open "Compute Engine" screen', async ({ calculatorPage }) => {
-        await calculatorPage.addEstimateButton.waitFor();
-        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
 
-        await calculatorPage.computeEngineElement.waitFor();
-        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.addEstimatePopup.computeEngineElement.waitFor();
+        await calculatorPage.addEstimatePopup.computeEngineElement.click();
 
-        await expect(calculatorPage.configurationBlock).toBeVisible();
+        await expect(calculatorPage.configurationComponent.configurationBlock).toBeVisible();
     });
 
     test('Should add Instance to Cost in Header after opening calculator', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.addEstimateButton.waitFor();
-        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
 
-        await calculatorPage.computeEngineElement.waitFor();
-        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.addEstimatePopup.computeEngineElement.waitFor();
+        await calculatorPage.addEstimatePopup.computeEngineElement.click();
 
-        await calculatorPage.instanceCard.waitFor();
-        await expect(calculatorPage.instanceCard).toBeVisible();
+        await calculatorPage.costDetails.instanceCard.waitFor();
+        await expect(calculatorPage.costDetails.instanceCard).toBeVisible();
 
         const oneInstancesCostUSD: string = '$138.70';
-        await expect(calculatorPage.costInHeader).toHaveText(oneInstancesCostUSD);
+        await expect(calculatorPage.configurationComponent.costInHeader).toHaveText(
+            oneInstancesCostUSD,
+        );
     });
 
     test('Should be able to add two new instances', async ({ calculatorPage }) => {
-        await calculatorPage.addEstimateButton.waitFor();
-        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
 
-        await calculatorPage.computeEngineElement.waitFor();
-        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.addEstimatePopup.computeEngineElement.waitFor();
+        await calculatorPage.addEstimatePopup.computeEngineElement.click();
 
-        await calculatorPage.numberOfInstancesIncrementButton.dblclick();
+        await calculatorPage.configurationComponent.numberOfInstancesIncrementButton.dblclick();
 
         const threeInstancesCostUSD: string = '$417.30';
-        await expect(calculatorPage.costInHeader).toHaveText(threeInstancesCostUSD);
+        await expect(calculatorPage.configurationComponent.costInHeader).toHaveText(
+            threeInstancesCostUSD,
+        );
     });
 
     test('Should open "Share Estimate" pop-up', async ({ calculatorPage }) => {
-        await calculatorPage.addEstimateButton.waitFor();
-        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
 
-        await calculatorPage.computeEngineElement.waitFor();
-        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.addEstimatePopup.computeEngineElement.waitFor();
+        await calculatorPage.addEstimatePopup.computeEngineElement.click();
 
-        await calculatorPage.shareButton.click();
+        await calculatorPage.costDetails.shareButton.click();
 
-        await expect(calculatorPage.shareEstimatePopup).toBeVisible();
-        await expect(calculatorPage.openEstimationSummaryLink).toBeVisible();
+        await expect(calculatorPage.costDetails.shareEstimatePopup).toBeVisible();
+        await expect(calculatorPage.costDetails.openEstimationSummaryLink).toBeVisible();
     });
 
     test('Should open estimation summary in new tab', async ({
         calculatorPage,
         estimationPreview,
     }) => {
-        await calculatorPage.addEstimateButton.waitFor();
-        await calculatorPage.addEstimateButton.click();
+        await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
+        await calculatorPage.addEstimatePopup.addEstimateButton.click();
 
-        await calculatorPage.computeEngineElement.waitFor();
-        await calculatorPage.computeEngineElement.click();
+        await calculatorPage.addEstimatePopup.computeEngineElement.waitFor();
+        await calculatorPage.addEstimatePopup.computeEngineElement.click();
 
-        await calculatorPage.shareButton.click();
+        await calculatorPage.costDetails.shareButton.click();
 
         const [newPage] = await Promise.all([
             calculatorPage.getPage().context().waitForEvent('page'),
-            calculatorPage.openEstimationSummaryLink.click(),
+            calculatorPage.costDetails.openEstimationSummaryLink.click(),
         ]);
         await newPage.waitForLoadState('domcontentloaded');
 
