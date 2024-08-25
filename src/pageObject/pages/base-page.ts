@@ -1,3 +1,4 @@
+import { Download } from '@playwright/test';
 import { Page } from 'playwright';
 
 export class BasePage {
@@ -19,5 +20,10 @@ export class BasePage {
 
     public getPage(): Page {
         return this.page;
+    }
+
+    public async waitForDownload(): Promise<Download> {
+        const downloadPromise = this.page.waitForEvent('download');
+        return downloadPromise;
     }
 }

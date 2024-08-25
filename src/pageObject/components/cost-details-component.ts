@@ -72,4 +72,8 @@ export class CostDetailsComponent {
     get placeholderTextEmptyCostDetails() {
         return this.page.locator('//div[@class="nUZvhc"]');
     }
+
+    get downloadButton() {
+        return this.page.locator('//button[@aria-label="Download estimate as .csv"]')
+    }
 }
