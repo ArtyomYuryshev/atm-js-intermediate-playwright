@@ -1,6 +1,6 @@
 import { test, expect } from '../fixtures';
 import { waitAndClick, waitForEnabled } from '../../utils/helpers';
-import configCSV from '../../utils/csv-config-base-compute-instance';
+import configCSV from '../../utils/csv-config-base';
 import * as path from 'path';
 import * as fs from 'fs';
 import csvFileValidator from 'csv-file-validator';
