@@ -1,9 +1,8 @@
 import { test, expect } from '../fixtures';
 import { waitAndClick, waitForEnabled } from '../../utils/helpers';
-import configCSV from '../../utils/csv-config-base';
 import * as path from 'path';
 import * as fs from 'fs';
-import csvFileValidator from 'csv-file-validator';
+import { validateCSVContent } from '../../utils/csv-utils';
 
 const downloadPath: string = './downloads/';
 let downloadedFilePath: string;
@@ -55,8 +54,14 @@ test.describe('Calculation Download SMOKE', () => {
         await download.saveAs(downloadedFilePath);
 
         const fileContent = fs.readFileSync(downloadedFilePath, 'utf-8');
-        const validationResult = await csvFileValidator(fileContent, configCSV);
+        const { validationResult, additionalContentChecks } = await validateCSVContent(fileContent);
+
+        console.log('Invalid Data:', validationResult.inValidData);
 
         expect(validationResult.inValidData.length).toBe(0);
+
+        additionalContentChecks.forEach(({ index, cleanedContent }) => {
+            console.log(`Additional content ${index + 1}:`, cleanedContent);
+        });
     });
 });
