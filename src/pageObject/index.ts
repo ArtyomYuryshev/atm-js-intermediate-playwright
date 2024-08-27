@@ -1,2 +1,10 @@
-export { CalculatorPage } from './calculator-page';
-export { EstimationPreview } from './estimation-preview';
+// pages
+export { CalculatorPage } from './pages/calculator-page';
+export { EstimationPreview } from './pages/estimation-preview';
+
+// components
+export { AdEstimatePopupComponent } from './components/add-to-estimate-popup-component';
+export { ConfigurationComponent } from './components/configuration-component';
+export { CostDetailsComponent } from './components/cost-details-component';
+export { DeleteNotificationComponent } from './components/delete-notification-component';
+export { DeleteGroupPopupComponent } from './components/delete-group-popup-component';
