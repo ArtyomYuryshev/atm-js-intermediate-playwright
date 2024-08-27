@@ -74,6 +74,6 @@ export class CostDetailsComponent {
     }
 
     get downloadButton() {
-        return this.page.locator('//button[@aria-label="Download estimate as .csv"]')
+        return this.page.locator('//button[@aria-label="Download estimate as .csv"]');
     }
 }

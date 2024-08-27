@@ -2,7 +2,6 @@ import { test, expect } from '../fixtures';
 import { waitAndClick, fillWithChars } from '../../utils/helpers';
 
 test.describe('Cloud Calculator. Compute Engine Regress', () => {
-
     test.beforeEach(async ({ calculatorPage }) => {
         await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();

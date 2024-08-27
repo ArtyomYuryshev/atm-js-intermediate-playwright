@@ -5,7 +5,7 @@ import {
     ConfigurationComponent,
     CostDetailsComponent,
     DeleteNotificationComponent,
-    DeleteGroupPopupComponent
+    DeleteGroupPopupComponent,
 } from '../index';
 
 export class CalculatorPage extends BasePage {
