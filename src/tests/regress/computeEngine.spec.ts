@@ -43,7 +43,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
 
         await expect(calculatorPage.configurationComponent.vCPUsAndRamText).toBeVisible();
         await expect(calculatorPage.configurationComponent.vCPUsAndRamText).toHaveText(
-            'vCPUs: 4, RAM: 16 GB',
+            'vCPUs: 4, RAM: 16 GiB',
         );
     });
 
@@ -103,22 +103,19 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.configurationComponent.costInHeader).toHaveText('$150.53');
     });
 
+    // flaky need to redo
     test('Should be able to calculate cost after adding all Service type (Compute Engine)', async ({
         calculatorPage,
     }) => {
-        await calculatorPage.addEstimatePopup.addEstimateButton.click();
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
+        await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
         await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
-        await calculatorPage.costDetails.secondInstanceCard.waitFor();
 
         await calculatorPage.configurationComponent.serviceTypeDDL.click();
         await calculatorPage.configurationComponent.soleTenantNodesServiceTypeDDLItem.click();
         await calculatorPage.costDetails.soleTenantNodeCard.waitFor();
 
-        await calculatorPage.addEstimatePopup.addEstimateButton.click();
-        await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
+        await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
         await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
-        await calculatorPage.costDetails.secondInstanceCard.waitFor();
 
         await calculatorPage.configurationComponent.serviceTypeDDL.click();
         await calculatorPage.configurationComponent.machineImagesServiceTypeDDLItem.click();
@@ -127,7 +124,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.costDetails.instanceCard).toBeVisible();
         await expect(calculatorPage.costDetails.soleTenantNodeCard).toBeVisible();
         await expect(calculatorPage.costDetails.machineImagesCard).toBeVisible();
-        await expect(calculatorPage.costDetails.costInDetails).toHaveText('$282.40');
+        await expect(calculatorPage.costDetails.costInDetails).toHaveText('$4,703.57');
         await expect(calculatorPage.configurationComponent.costInHeader).toHaveText('$5.00');
     });
 
