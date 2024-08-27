@@ -126,7 +126,7 @@ export class ConfigurationComponent {
     }
 
     get vCPUsAndRamText() {
-        return this.page.locator('#ow5 .U4lDT .HY0Uh:nth-of-type(4)');
+        return this.page.locator('//div[@class="qPg9F bTKR0c"]//div[@class="VVW32d"]/div[@class="HY0Uh"][2]');
     }
 
     get diskSizeInputField() {
