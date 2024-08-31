@@ -15,8 +15,8 @@ test.describe('Calculation Download SMOKE', () => {
         await calculatorPage.costDetails.instanceCard.waitFor();
     });
 
-
-    test.afterEach(async (_, testInfo) => {
+    // eslint-disable-next-line no-empty-pattern
+    test.afterEach(async ({}, testInfo) => {
         if (testInfo.status === 'passed' && downloadedFilePath) {
             fs.unlinkSync(downloadedFilePath);
             console.log(`Deleted file: ${downloadedFilePath}`);
