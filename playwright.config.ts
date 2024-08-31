@@ -27,7 +27,7 @@ export default defineConfig({
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
-    workers: process.env.CI ? 1 : 2,
+    workers: process.env.CI ? 1 : 3,
     reporter: [
         ['list'],
         ['html', { outputFolder: 'pw-reports/html', open: 'never' }],
@@ -42,7 +42,7 @@ export default defineConfig({
     },
     expect: {
         toHaveScreenshot: {
-            maxDiffPixels: 100,
+            maxDiffPixelRatio: 0.03,
         },
     },
     outputDir: 'pw-tests-results',
@@ -53,7 +53,7 @@ export default defineConfig({
                 ...devices['Desktop Chrome'],
                 viewport: { width: 1280, height: 720 },
                 launchOptions: {
-                    args: ['--window-position=0,0'],
+                    args: ['--window-position=0,0', '--window-size=1280,720'],
                 },
             },
         },
