@@ -2,13 +2,7 @@ import { test, expect } from '../fixtures';
 import { waitAndClick, waitForEnabled } from '../../utils/helpers';
 import * as path from 'path';
 import * as fs from 'fs';
-import { validateCSVContent } from '../../utils/csv-utils';
-import {
-    TOTAL_PRICE_PATTERN,
-    DATE_PATTERN,
-    ESTIMATED_FEES_TEXT,
-    URL_PATTERN,
-} from '../../utils/csv-consts';
+import { validateAndExtractCSVContent, performContentChecks } from '../../utils/csv-utils';
 
 const downloadPath: string = './downloads/';
 let downloadedFilePath: string;
@@ -21,8 +15,8 @@ test.describe('Calculation Download SMOKE', () => {
         await calculatorPage.costDetails.instanceCard.waitFor();
     });
 
-    // eslint-disable-next-line no-empty-pattern
-    test.afterEach(async ({}, testInfo) => {
+
+    test.afterEach(async (_, testInfo) => {
         if (testInfo.status === 'passed' && downloadedFilePath) {
             fs.unlinkSync(downloadedFilePath);
             console.log(`Deleted file: ${downloadedFilePath}`);
@@ -60,38 +54,18 @@ test.describe('Calculation Download SMOKE', () => {
         await download.saveAs(downloadedFilePath);
 
         const fileContent = fs.readFileSync(downloadedFilePath, 'utf-8');
-        const { validationResult, additionalContentChecks } = await validateCSVContent(fileContent);
+        const { validationResult, additionalContentChecks } =
+            await validateAndExtractCSVContent(fileContent);
 
         console.log('Invalid Data:', validationResult.inValidData);
-
         expect(validationResult.inValidData.length).toBe(0);
 
-        let totalPriceFound = false;
-        let dateFound = false;
-        let estimatedFeesFound = false;
-        let urlFound = false;
+        const results = performContentChecks(additionalContentChecks);
 
-        additionalContentChecks.forEach(({ index, cleanedContent }) => {
-            const contentString = cleanedContent.join(',');
-            console.log(`Additional content ${index + 1}:`, contentString);
-
-            if (TOTAL_PRICE_PATTERN.test(contentString)) {
-                totalPriceFound = true;
-            }
-            if (DATE_PATTERN.test(contentString)) {
-                dateFound = true;
-            }
-            if (contentString.includes(ESTIMATED_FEES_TEXT)) {
-                estimatedFeesFound = true;
-            }
-            if (URL_PATTERN.test(contentString)) {
-                urlFound = true;
+        results.forEach((result) => {
+            if (!result.found) {
+                throw new Error(`${result.description} was not found`);
             }
         });
-
-        expect(totalPriceFound).toBe(true);
-        expect(dateFound).toBe(true);
-        expect(estimatedFeesFound).toBe(true);
-        expect(urlFound).toBe(true);
     });
 });
