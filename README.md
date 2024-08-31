@@ -66,3 +66,9 @@ npm run prettier:write
 ```shell
 npm run lint
 ```
+
+### To update Golden Screenshots:
+
+```shell
+npx playwright test src/tests/visual/cloud-calculator-visual.spec.ts --update-snapshots
+```

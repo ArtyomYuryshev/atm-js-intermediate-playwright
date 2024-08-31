@@ -40,6 +40,11 @@ export default defineConfig({
         video: 'retain-on-failure',
         screenshot: 'only-on-failure',
     },
+    expect: {
+        toHaveScreenshot: {
+            maxDiffPixels: 100,
+        },
+    },
     outputDir: 'pw-tests-results',
     projects: [
         {
