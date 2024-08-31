@@ -21,6 +21,11 @@
             {
                 "selector": "typeLike",
                 "format": ["PascalCase"]
+            },
+            {
+                "selector": "parameter",
+                "format": ["camelCase"],
+                "leadingUnderscore": "allow"
             }
         ]
     },

@@ -3,6 +3,12 @@ import { waitAndClick, waitForEnabled } from '../../utils/helpers';
 import * as path from 'path';
 import * as fs from 'fs';
 import { validateCSVContent } from '../../utils/csv-utils';
+import {
+    TOTAL_PRICE_PATTERN,
+    DATE_PATTERN,
+    ESTIMATED_FEES_TEXT,
+    URL_PATTERN,
+} from '../../utils/csv-consts';
 
 const downloadPath: string = './downloads/';
 let downloadedFilePath: string;
@@ -60,8 +66,32 @@ test.describe('Calculation Download SMOKE', () => {
 
         expect(validationResult.inValidData.length).toBe(0);
 
+        let totalPriceFound = false;
+        let dateFound = false;
+        let estimatedFeesFound = false;
+        let urlFound = false;
+
         additionalContentChecks.forEach(({ index, cleanedContent }) => {
-            console.log(`Additional content ${index + 1}:`, cleanedContent);
+            const contentString = cleanedContent.join(',');
+            console.log(`Additional content ${index + 1}:`, contentString);
+
+            if (TOTAL_PRICE_PATTERN.test(contentString)) {
+                totalPriceFound = true;
+            }
+            if (DATE_PATTERN.test(contentString)) {
+                dateFound = true;
+            }
+            if (contentString.includes(ESTIMATED_FEES_TEXT)) {
+                estimatedFeesFound = true;
+            }
+            if (URL_PATTERN.test(contentString)) {
+                urlFound = true;
+            }
         });
+
+        expect(totalPriceFound).toBe(true);
+        expect(dateFound).toBe(true);
+        expect(estimatedFeesFound).toBe(true);
+        expect(urlFound).toBe(true);
     });
 });
