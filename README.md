@@ -72,3 +72,4 @@ npm run lint
 ```shell
 npx playwright test src/tests/visual/cloud-calculator-visual.spec.ts --update-snapshots
 ```
+NOTE: it is better to create screenshots by running the test in the mode (with or without head) in which you plan to test. Otherwise, the visual difference may exceed the percentage set by the tests
