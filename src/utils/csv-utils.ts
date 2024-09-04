@@ -9,6 +9,7 @@ interface AdditionalContentCheck {
 
 interface ValidationResult {
     inValidData: unknown[];
+    data: object[];
 }
 
 /**
@@ -49,7 +50,27 @@ function cleanAdditionalContent(content: string): string[] {
 }
 
 /**
- * Checks if the content string matches the given pattern.
+ * Compares two arrays of objects (const and validationResult.data) to check if they are equal.
+ * @param actualData - The actual data array.
+ * @param expectedData - The expected data array.
+ * @returns True if the arrays are equal, otherwise false.
+ */
+export function compareData(actualData: object[], expectedData: object[]): boolean {
+    if (actualData.length !== expectedData.length) {
+        return false;
+    }
+
+    for (let i = 0; i < actualData.length; i++) {
+        if (JSON.stringify(actualData[i]) !== JSON.stringify(expectedData[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/**
+ * Checks if the additional content string matches the given pattern.
  * @param contentString - The content string to check.
  * @param pattern - The pattern to match against.
  * @returns True if the content matches the pattern, otherwise false.
@@ -63,7 +84,7 @@ export function matchesPattern(contentString: string, pattern: RegExp | string):
 }
 
 /**
- * Performs content checks against predefined patterns.
+ * Performs additional content checks against predefined patterns.
  * @param additionalContentChecks - The additional content checks to perform.
  * @returns An array of results indicating whether each check passed.
  */

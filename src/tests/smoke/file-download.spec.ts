@@ -2,7 +2,8 @@ import { test, expect } from '../fixtures';
 import { waitAndClick, waitForEnabled } from '../../utils/helpers';
 import * as path from 'path';
 import * as fs from 'fs';
-import { validateAndExtractCSVContent, performContentChecks } from '../../utils/csv-utils';
+import { validateAndExtractCSVContent, performContentChecks, compareData } from '../../utils/csv-utils';
+import { expectedData } from '../../utils/csv-consts';
 
 const downloadPath: string = './downloads/';
 let downloadedFilePath: string;
@@ -59,6 +60,9 @@ test.describe('Calculation Download SMOKE', () => {
 
         console.log('Invalid Data:', validationResult.inValidData);
         expect(validationResult.inValidData.length).toBe(0);
+
+        const isDataEqual = compareData(validationResult.data, expectedData);
+        expect(isDataEqual).toBe(true);    
 
         const results = performContentChecks(additionalContentChecks);
 
