@@ -24,6 +24,8 @@ node_modules
 
 # Other
 /playwright/.cache/
+/downloads/
+
 
 #Variables
 .env

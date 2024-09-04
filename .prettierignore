@@ -1,3 +1,6 @@
 # Ignore json configs
 package.json
 package-lock.json
+/downloads/
+/pw-reports/
+/pw-tests-results/
