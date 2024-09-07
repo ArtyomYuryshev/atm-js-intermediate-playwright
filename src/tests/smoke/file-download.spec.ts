@@ -3,7 +3,7 @@ import { waitAndClick, waitForEnabled } from '../../utils/helpers';
 import * as path from 'path';
 import * as fs from 'fs';
 import { validateAndExtractCSVContent, performContentChecks, compareData } from '../../utils/csv-utils';
-import { expectedData } from '../../utils/csv-consts';
+import { expectedData } from '../../data/csv-consts';
 import { CalculatorPage } from '../../pageObject';
 
 const downloadPath: string = './downloads/';
