@@ -1,25 +1,17 @@
-import { Page } from 'playwright';
+import { Page } from '@playwright/test';
 
 export class HeaderComponent {
-    constructor(private page: Page) {}
+    constructor(private readonly page: Page) {}
 
     get header() {
         return this.page.locator('.TDbJKc .ZUAiPc');
     }
 
-    async selectLanguage(language: string) {
-        // Открываем меню выбора языка
-        await this.page.click('//div[@class="M4Fi3d"]//div[@class="VfPpkd-aPP78e"]');
-        
-        // Используем evaluate для поиска элемента с текстом, содержащим невидимые символы
-        await this.page.evaluate((language) => {
-            const elements = document.querySelectorAll('span.VfPpkd-rymPhb-fpDzbe-fmcmS');
-            for (const element of elements) {
-                if (element.textContent?.includes(language)) {
-                    (element as HTMLElement).click();
-                    break;
-                }
-            }
-        }, language);
+    async selectLanguage(languageValue: string) {
+        const languageMenuButton = this.page.locator('//div[@class="M4Fi3d"]//div[@class="VfPpkd-aPP78e"]');
+        await languageMenuButton.click();
+        const languageOption = this.page.locator(`div.M4Fi3d ul.VfPpkd-rymPhb li[data-value="${languageValue}"]`);
+        await languageOption.waitFor({ state: 'visible', timeout: 10000 });
+        await languageOption.click();
     }
 }
