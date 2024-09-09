@@ -17,31 +17,6 @@ export class AdEstimatePopupComponent {
         return this.page.locator(locator);
     }
 
-    // async getAddEstimateButton() {
-    //     const mobileLocator = '//button[@data-idom-class="xhASFc" or @data-idom-class="ePqIy"]';
-    //     const desktopLocator = '//button[.//span[text()="Add to estimate"]]';
-    //     const tabletLocator = '//button[@aria-label="Open Add to Estimate Dialog"]';
-    
-    //     if (await this.page.locator(mobileLocator).count() > 0) {
-    //         return this.page.locator(mobileLocator).first();
-    //     } else if (await this.page.locator(tabletLocator).count() > 0) {
-    //         return this.page.locator(tabletLocator).first();
-    //     } else {
-    //         return this.page.locator(desktopLocator).first();
-    //     }
-    // }
-
-    // async getAddEstimationModalWindow() {
-    //     const mobileLocator = '//*[@aria-modal="true" and @role="dialog"]//div//span[text()="Add to this estimate"]';
-    //     const desktopLocator = '//div[@aria-modal="true" and @role="dialog" and @aria-label="Add to this estimate"]';
-
-    //     if (await this.page.locator(mobileLocator).count() > 0) {
-    //         return this.page.locator(mobileLocator).first();
-    //     } else {
-    //         return this.page.locator(desktopLocator).first();
-    //     }
-    // }
-
     get computeEngineElement() {
         return this.page.locator('//h2[text()="Compute Engine"]/..');
     }
@@ -56,5 +31,9 @@ export class AdEstimatePopupComponent {
 
     get kubernetesEngineElement() {
         return this.page.locator('//h2[text()="Google Kubernetes Engine"]/..');
+    }
+
+    get tabletGoBackButton() {
+        return this.page.locator('//button[@class="pYTkkf-Bz112c-LgbsSe" and @aria-label="Go back"]')
     }
 }
