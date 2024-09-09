@@ -1,6 +1,7 @@
 // pages
 export { CalculatorPage } from './pages/calculator-page';
 export { EstimationPreview } from './pages/estimation-preview';
+export { BasePage } from './pages/base-page';
 
 // components
 export { AdEstimatePopupComponent } from './components/add-to-estimate-popup-component';
