@@ -2,7 +2,7 @@ import { test, expect } from '../fixtures';
 import { waitAndClick } from '../../utils/helpers';
 
 test.describe('Cloud Calculator. 4 types Smoke', () => {
-    test('@mobile | Should be able to add Compute Engine, Cloud Storage, BigQuery and Kubernetes Engine to calculator', async ({ calculatorPage }) => {
+    test('@mobile @tablet | Should be able to add Compute Engine, Cloud Storage, BigQuery and Kubernetes Engine to calculator', async ({ calculatorPage }) => {
         await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
         await calculatorPage.addEstimatePopup.addEstimationModalWindow.waitFor();
 
