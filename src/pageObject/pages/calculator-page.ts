@@ -9,12 +9,15 @@ import {
 } from '../index';
 
 export class CalculatorPage extends BasePage {
-    constructor(page: Page) {
+    private isMobile: boolean;
+
+    constructor(page: Page, isMobile: boolean) {
         super(page, '/products/calculator');
+        this.isMobile = isMobile;
     }
 
     get addEstimatePopup(): AdEstimatePopupComponent {
-        return new AdEstimatePopupComponent(this.page);
+        return new AdEstimatePopupComponent(this.page, this.isMobile);
     }
 
     get configurationComponent(): ConfigurationComponent {
