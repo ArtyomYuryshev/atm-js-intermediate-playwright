@@ -1,28 +1,20 @@
 import { Page } from 'playwright';
 
 export class AdEstimatePopupComponent {
-    constructor(private page: Page) {}
+    constructor(private page: Page, private isMobile: boolean) {}
 
     get addEstimateButton() {
-        return this.page.locator(
-            '//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]',
-        );
-    }
-
-    get mobileAddEstimateButton() {
-        return this.page
-            .locator('//button[@data-idom-class="xhASFc" or @data-idom-class="ePqIy"]')
-            .first();
+        const locator = this.isMobile
+            ? '//button[@data-idom-class="xhASFc" or @data-idom-class="ePqIy"]'
+            : '//button[.//span[@class="AeBiU-RLmnJb"] and .//span[text()="Add to estimate"]]';
+        return this.page.locator(locator).first();
     }
 
     get addEstimationModalWindow() {
-        return this.page.locator('[aria-label="Add to this estimate"]');
-    }
-
-    get mobileAddEstimationModalWindow() {
-        return this.page.locator(
-            '//div[@aria-modal="true" and @role="dialog"]//span[text()="Add to this estimate"]/ancestor::div[@aria-modal="true" and @role="dialog"]',
-        );
+        const locator = this.isMobile
+            ? '//div[@aria-modal="true" and @role="dialog"]//span[text()="Add to this estimate"]/ancestor::div[@aria-modal="true" and @role="dialog"]'
+            : '[aria-label="Add to this estimate"]';
+        return this.page.locator(locator);
     }
 
     get computeEngineElement() {
