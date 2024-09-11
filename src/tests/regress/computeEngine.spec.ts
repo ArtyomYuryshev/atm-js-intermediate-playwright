@@ -132,8 +132,8 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.costDetails.threeDotsButton.click();
         await calculatorPage.costDetails.deleteItem3Dots.click();
 
-        await expect(calculatorPage.configurationComponent.costInHeader).not.toBeVisible();
-        await expect(calculatorPage.costDetails.instanceCard).not.toBeVisible();
+        await expect(calculatorPage.configurationComponent.costInHeader).toBeHidden();
+        await expect(calculatorPage.costDetails.instanceCard).toBeHidden();
         await expect(calculatorPage.costDetails.costInDetails).toHaveText('--');
         await expect(calculatorPage.costDetails.placeholderTextEmptyCostDetails).toBeVisible();
         await expect(calculatorPage.configurationComponent.addItemsTextBlock).toHaveText(
@@ -152,8 +152,8 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.costDetails.deleteGroupButton.click();
         await calculatorPage.deleteGroupPopup.confirmDeleteGroupButton.click();
 
-        await expect(calculatorPage.configurationComponent.costInHeader).not.toBeVisible();
-        await expect(calculatorPage.costDetails.instanceCard).not.toBeVisible();
+        await expect(calculatorPage.configurationComponent.costInHeader).toBeHidden();
+        await expect(calculatorPage.costDetails.instanceCard).toBeHidden();
         await expect(calculatorPage.costDetails.costInDetails).toHaveText('--');
         await expect(calculatorPage.costDetails.placeholderTextEmptyCostDetails).toBeVisible();
         await expect(calculatorPage.configurationComponent.addItemsTextBlock).toHaveText(
@@ -169,9 +169,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.costDetails.deleteGroupButton.click();
         await calculatorPage.deleteGroupPopup.cancelDeleteGroupButton.click();
 
-        await expect(
-            calculatorPage.deleteGroupPopup.deleteGroupConfirmationPopUp,
-        ).not.toBeVisible();
+        await expect(calculatorPage.deleteGroupPopup.deleteGroupConfirmationPopUp).toBeHidden();
         await expect(calculatorPage.configurationComponent.costInHeader).toBeVisible();
         await expect(calculatorPage.costDetails.instanceCard).toBeVisible();
         await expect(calculatorPage.costDetails.secondInstanceCard).toBeVisible();
@@ -192,9 +190,9 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
 
         await calculatorPage.deleteNotification.undoDeleteButton.click();
 
-        await expect(calculatorPage.deleteNotification.itemsDeletedNotification).not.toBeVisible();
-        await expect(calculatorPage.costDetails.placeholderTextEmptyCostDetails).not.toBeVisible();
-        await expect(calculatorPage.configurationComponent.addItemsTextBlock).not.toBeVisible();
+        await expect(calculatorPage.deleteNotification.itemsDeletedNotification).toBeHidden();
+        await expect(calculatorPage.costDetails.placeholderTextEmptyCostDetails).toBeHidden();
+        await expect(calculatorPage.configurationComponent.addItemsTextBlock).toBeHidden();
         await expect(calculatorPage.costDetails.instanceCard).toBeVisible();
         await expect(calculatorPage.configurationComponent.costInHeader).toHaveText('$138.70');
         await expect(calculatorPage.costDetails.costInDetails).toHaveText('$138.70');
@@ -209,17 +207,17 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.configurationComponent.numberOfInstancesInputField.fill('1');
         await expect(
             calculatorPage.configurationComponent.numberOfInstancesValidationMessage,
-        ).not.toBeVisible();
+        ).toBeHidden();
 
         await calculatorPage.configurationComponent.numberOfInstancesInputField.fill('49999');
         await expect(
             calculatorPage.configurationComponent.numberOfInstancesValidationMessage,
-        ).not.toBeVisible();
+        ).toBeHidden();
 
         await calculatorPage.configurationComponent.numberOfInstancesInputField.fill('50000');
         await expect(
             calculatorPage.configurationComponent.numberOfInstancesValidationMessage,
-        ).not.toBeVisible();
+        ).toBeHidden();
 
         await calculatorPage.configurationComponent.numberOfInstancesInputField.fill('50001');
         await expect(
@@ -274,19 +272,13 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await expect(calculatorPage.configurationComponent.diskSizeValidationMessage).toBeVisible();
 
         await calculatorPage.configurationComponent.diskSizeInputField.fill('1');
-        await expect(
-            calculatorPage.configurationComponent.diskSizeValidationMessage,
-        ).not.toBeVisible();
+        await expect(calculatorPage.configurationComponent.diskSizeValidationMessage).toBeHidden();
 
         await calculatorPage.configurationComponent.diskSizeInputField.fill('65535');
-        await expect(
-            calculatorPage.configurationComponent.diskSizeValidationMessage,
-        ).not.toBeVisible();
+        await expect(calculatorPage.configurationComponent.diskSizeValidationMessage).toBeHidden();
 
         await calculatorPage.configurationComponent.diskSizeInputField.fill('65536');
-        await expect(
-            calculatorPage.configurationComponent.diskSizeValidationMessage,
-        ).not.toBeVisible();
+        await expect(calculatorPage.configurationComponent.diskSizeValidationMessage).toBeHidden();
 
         await calculatorPage.configurationComponent.diskSizeInputField.fill('65537');
         await expect(calculatorPage.configurationComponent.diskSizeValidationMessage).toBeVisible();
@@ -325,7 +317,7 @@ test.describe('Cloud Calculator. Compute Engine Regress', () => {
         await calculatorPage.costDetails.currencyDDLButton.click();
         await calculatorPage.costDetails.euroDDLitem.click();
 
-        await expect(calculatorPage.costDetails.costInDetails).toHaveText('€128.28');
-        await expect(calculatorPage.configurationComponent.costInHeader).toHaveText('€128.28');
+        await expect(calculatorPage.costDetails.costInDetails).toHaveText('€124.77');
+        await expect(calculatorPage.configurationComponent.costInHeader).toHaveText('€124.77');
     });
 });

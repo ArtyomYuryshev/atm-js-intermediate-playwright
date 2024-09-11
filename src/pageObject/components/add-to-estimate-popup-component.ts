@@ -1,7 +1,10 @@
 import { Page } from 'playwright';
 
 export class AdEstimatePopupComponent {
-    constructor(private page: Page, private isMobile: boolean) {}
+    constructor(
+        private page: Page,
+        private isMobile: boolean,
+    ) {}
 
     get addEstimateButton() {
         const locator = this.isMobile
@@ -34,6 +37,8 @@ export class AdEstimatePopupComponent {
     }
 
     get tabletGoBackButton() {
-        return this.page.locator('//button[@class="pYTkkf-Bz112c-LgbsSe" and @aria-label="Go back"]')
+        return this.page.locator(
+            '//button[@class="pYTkkf-Bz112c-LgbsSe" and @aria-label="Go back"]',
+        );
     }
 }

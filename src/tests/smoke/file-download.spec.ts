@@ -2,7 +2,11 @@ import { test, expect } from '../fixtures';
 import { waitAndClick, waitForEnabled } from '../../utils/helpers';
 import * as path from 'path';
 import * as fs from 'fs';
-import { validateAndExtractCSVContent, performContentChecks, compareData } from '../../utils/csv-utils';
+import {
+    validateAndExtractCSVContent,
+    performContentChecks,
+    compareData,
+} from '../../utils/csv-utils';
 import { expectedData } from '../../data/csv-consts';
 import { CalculatorPage } from '../../pageObject';
 
@@ -46,12 +50,15 @@ test.describe('Calculation Download SMOKE', () => {
     test('Should verify the content of the downloaded file', async ({ calculatorPage }) => {
         const filePath = await downloadFile(calculatorPage);
         const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const { validationResult, additionalContentChecks } = await validateAndExtractCSVContent(fileContent);
+        const { validationResult, additionalContentChecks } =
+            await validateAndExtractCSVContent(fileContent);
 
         expect(validationResult.inValidData.length).toBe(0);
         expect(compareData(validationResult.data, expectedData)).toBe(true);
 
         const resultsAdditionalData = performContentChecks(additionalContentChecks);
-        resultsAdditionalData.forEach(resultsAdditionalData => expect(resultsAdditionalData.found).toBe(true));
+        resultsAdditionalData.forEach((resultsAdditionalData) =>
+            expect(resultsAdditionalData.found).toBe(true),
+        );
     });
 });

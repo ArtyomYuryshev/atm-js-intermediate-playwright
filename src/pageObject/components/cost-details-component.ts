@@ -8,9 +8,7 @@ export class CostDetailsComponent {
     }
 
     get euroDDLitem() {
-        return this.page.locator(
-            '//ul[@class="W7g1Rb-rymPhb O68mGe-hqgu2c"]/li/ul/li[@data-value="EUR"]',
-        );
+        return this.page.locator('//li[@data-value="EUR"]');
     }
 
     get soleTenantNodeCard() {
