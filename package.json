@@ -13,6 +13,8 @@
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write .",
     "lint": "eslint . --ext .ts",
+    "test:desktop": "npx playwright test --project='chromium'",
+    "test:desktop:headed": "npx playwright test --project='chromium' --headed",
     "test:ios:mobile": "npx playwright test --project='iOS Mobile 17.5' --grep '@mobile'",
     "test:android:mobile:14": "npx playwright test --project='Android Mobile 14.0' --grep '@mobile'",
     "test:android:mobile:13": "npx playwright test --project='Android Mobile 13.0' --grep '@mobile'",

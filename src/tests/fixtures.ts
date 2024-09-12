@@ -1,5 +1,3 @@
-/* eslint-disable no-empty-pattern */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { test as base, expect, Page } from '@playwright/test';
 import { CalculatorPage, EstimationPreview } from '../pageObject';
 
@@ -13,7 +11,7 @@ const test = base.extend<{
         await calculatorPageInstance.open();
         await use(calculatorPageInstance);
     },
-    estimationPreview: async ({ page }, use) => {
+    estimationPreview: async ({}, use) => {
         const estimationPreviewInstance = (newPage: Page) => new EstimationPreview(newPage);
         await use(estimationPreviewInstance);
     },

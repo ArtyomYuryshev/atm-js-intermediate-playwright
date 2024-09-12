@@ -115,7 +115,6 @@ export function performContentChecks(
         const found = additionalContentChecks.some(({ cleanedContent }) =>
             matchesPattern(cleanedContent.join(','), check.pattern),
         );
-        console.log(`${check.description} found:`, found);
         return { description: check.description, found };
     });
 
