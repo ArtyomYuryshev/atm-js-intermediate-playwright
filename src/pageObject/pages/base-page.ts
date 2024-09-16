@@ -1,5 +1,6 @@
 import { Download } from '@playwright/test';
 import { Page } from 'playwright';
+import { HeaderComponent } from '../components/header-component';
 
 export class BasePage {
     protected readonly page: Page;
@@ -25,5 +26,9 @@ export class BasePage {
     public async waitForDownload(): Promise<Download> {
         const downloadPromise = this.page.waitForEvent('download');
         return downloadPromise;
+    }
+
+    get headerComponent(): HeaderComponent {
+        return new HeaderComponent(this.page);
     }
 }

@@ -1,6 +1,6 @@
 import csvFileValidator from 'csv-file-validator';
-import configCSV from './csv-config';
-import { TOTAL_PRICE_PATTERN, DATE_PATTERN, ESTIMATED_FEES_TEXT, URL_PATTERN } from './csv-consts';
+import configCSV from './csv-file-validator-config';
+import { TOTAL_PRICE_PATTERN, DATE_PATTERN, ESTIMATED_FEES_TEXT, URL_PATTERN } from '../data/csv-consts';
 
 interface AdditionalContentCheck {
     index: number;
