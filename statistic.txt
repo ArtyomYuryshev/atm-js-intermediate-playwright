@@ -1,0 +1,32 @@
+iOS Statistics:
+https://gs.statcounter.com/ios-version-market-share/mobile/worldwide/#monthly-202308-202408
+Mobile
+1st iOS 17.5 - 58.84%
+2nd iOS 17.6 - 9.28%
+3rd iOS 16.7 - 3.95%
+
+Tablet
+https://gs.statcounter.com/ios-version-market-share/tablet/worldwide/#monthly-202308-202408
+1st iOS 17.5 - 46.77%
+2nd iOS 12.5 - 7.92%
+3rd iOS 17.6 - 7.24%
+
+Based on the insignificance of the 2nd and 3rd place, only iOS 17.5 will be added to the tests.
+
+Android statistics:
+Mobile
+https://gs.statcounter.com/android-version-market-share/mobile/worldwide/#monthly-202308-202408
+1st 14.0 - 31.09%
+2nd 13.0 - 20.79%
+3rd 12.0 - 15.19%
+4th 11.0 - 13.28%
+
+Tablet
+https://gs.statcounter.com/android-version-market-share/tablet/worldwide/#monthly-202308-202408
+1st 14.0 - 19.57%
+2nd 9.0 Pie - 16.08%
+3rd 11.0 - 15.3%
+4th 13.0 - 10.95%
+5th 12.0 - 10.59%
+
+Based on the statistics, 14.0, 13.0, 12.0, 11.0 and additionally 9.0 Pie for Tablet only were chosen for Android devices
