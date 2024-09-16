@@ -12,7 +12,18 @@
     "report:runJunit": "junit-viewer --results=pw-reports/junit/results.xml --port=3000",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write .",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "test:ios:mobile": "npx playwright test --project='iOS Mobile 17.5' --grep '@mobile'",
+    "test:android:mobile:14": "npx playwright test --project='Android Mobile 14.0' --grep '@mobile'",
+    "test:android:mobile:13": "npx playwright test --project='Android Mobile 13.0' --grep '@mobile'",
+    "test:android:mobile:12": "npx playwright test --project='Android Mobile 12.0' --grep '@mobile'",
+    "test:android:mobile:11": "npx playwright test --project='Android Mobile 11.0' --grep '@mobile'",
+    "test:ios:tablet": "npx playwright test --project='iOS Tablet 17.5' --grep '@tablet'",
+    "test:android:tablet:14": "npx playwright test --project='Android Tablet 14.0' --grep '@tablet'",
+    "test:android:tablet:13": "npx playwright test --project='Android Tablet 13.0' --grep '@tablet'",
+    "test:android:tablet:12": "npx playwright test --project='Android Tablet 12.0' --grep '@tablet'",
+    "test:android:tablet:11": "npx playwright test --project='Android Tablet 11.0' --grep '@tablet'",
+    "test:android:tablet:9": "npx playwright test --project='Android Tablet 9.0 Pie' --grep '@tablet'"
   },
   "engines": {
     "node": ">=18.0.0"
