@@ -1,3 +1,5 @@
+/* eslint-disable no-empty-pattern */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { test as base, expect, Page } from '@playwright/test';
 import { CalculatorPage, EstimationPreview } from '../pageObject';
 
