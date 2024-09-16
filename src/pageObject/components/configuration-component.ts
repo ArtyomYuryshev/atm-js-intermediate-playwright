@@ -69,7 +69,7 @@ export class ConfigurationComponent {
 
     get machineFamilyDDL() {
         return this.page.locator(
-            '//span[@id="c27" and text()="General Purpose"]/ancestor::div[@jsname="oYxtQd"]/ancestor::div[@jsname="wSASue"]',
+            '//span[text()="General Purpose"]/ancestor::div[@jsname="oYxtQd"]/ancestor::div[@jsname="wSASue"]',
         );
     }
 
@@ -132,7 +132,7 @@ export class ConfigurationComponent {
     }
 
     get diskSizeInputField() {
-        return this.page.locator('//input[@id="c40" and @class="qdOxv-fmcmS-wGMbrd"]');
+        return this.page.locator('div.MSEcuf div.c7iSRd input[type="number"]');
     }
 
     get diskSizeValidationMessage() {

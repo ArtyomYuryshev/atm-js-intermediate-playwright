@@ -13,7 +13,7 @@ const test = base.extend<{
         await calculatorPageInstance.open();
         await use(calculatorPageInstance);
     },
-    estimationPreview: async ({ page }, use) => {
+    estimationPreview: async ({}, use) => {
         const estimationPreviewInstance = (newPage: Page) => new EstimationPreview(newPage);
         await use(estimationPreviewInstance);
     },
