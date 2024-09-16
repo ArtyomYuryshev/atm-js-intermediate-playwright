@@ -1,5 +1,13 @@
 import { test, expect } from '../fixtures';
 import { waitAndClick } from '../../utils/helpers';
+import { CalculatorPage } from '../../pageObject';
+
+async function handleTabletSpecificSteps(calculatorPage: CalculatorPage, isTablet: boolean) {
+    if (isTablet) {
+        await waitAndClick(calculatorPage.addEstimatePopup.tabletGoBackButton);
+        await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
+    }
+}
 
 test.describe('Cloud Calculator. 4 types Smoke', () => {
     test('@mobile @tablet | Should be able to add Compute Engine, Cloud Storage, BigQuery and Kubernetes Engine to calculator', async ({
@@ -14,11 +22,7 @@ test.describe('Cloud Calculator. 4 types Smoke', () => {
         await waitAndClick(calculatorPage.addEstimatePopup.computeEngineElement);
         await calculatorPage.costDetails.instanceCard.waitFor();
 
-        // Check if it's a tablet and click the go back button
-        if (isTablet) {
-            await waitAndClick(calculatorPage.addEstimatePopup.tabletGoBackButton);
-            await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
-        }
+        await handleTabletSpecificSteps(calculatorPage, isTablet);
 
         // Add Cloud Storage
         await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
@@ -26,11 +30,7 @@ test.describe('Cloud Calculator. 4 types Smoke', () => {
         await waitAndClick(calculatorPage.addEstimatePopup.cloudStorageElement);
         await calculatorPage.costDetails.cloudStorageCard.waitFor();
 
-        // Check if it's a tablet and click the go back button
-        if (isTablet) {
-            await waitAndClick(calculatorPage.addEstimatePopup.tabletGoBackButton);
-            await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
-        }
+        await handleTabletSpecificSteps(calculatorPage, isTablet);
 
         // Add BigQuery
         await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
@@ -38,11 +38,7 @@ test.describe('Cloud Calculator. 4 types Smoke', () => {
         await waitAndClick(calculatorPage.addEstimatePopup.bigQueryElement);
         await calculatorPage.costDetails.bigQueryEditionsCard.waitFor();
 
-        // Check if it's a tablet and click the go back button
-        if (isTablet) {
-            await waitAndClick(calculatorPage.addEstimatePopup.tabletGoBackButton);
-            await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
-        }
+        await handleTabletSpecificSteps(calculatorPage, isTablet);
 
         // Add Kubernetes Engine
         await waitAndClick(calculatorPage.addEstimatePopup.addEstimateButton);
@@ -50,11 +46,7 @@ test.describe('Cloud Calculator. 4 types Smoke', () => {
         await waitAndClick(calculatorPage.addEstimatePopup.kubernetesEngineElement);
         await calculatorPage.costDetails.kubernetesEngineCard.waitFor();
 
-        // Check if it's a tablet and click the go back button
-        if (isTablet) {
-            await waitAndClick(calculatorPage.addEstimatePopup.tabletGoBackButton);
-            await calculatorPage.addEstimatePopup.addEstimateButton.waitFor();
-        }
+        await handleTabletSpecificSteps(calculatorPage, isTablet);
 
         // Assertions
         await expect(calculatorPage.costDetails.instanceCard).toBeVisible();

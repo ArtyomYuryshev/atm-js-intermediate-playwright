@@ -3,8 +3,14 @@
     "parserOptions": {
         "project": "./tsconfig.json"
     },
-    "plugins": ["@typescript-eslint"],
-    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    "plugins": ["@typescript-eslint", "playwright", "prettier"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:playwright/recommended",
+        "plugin:prettier/recommended",
+        "prettier"
+    ],
     "rules": {
         "no-await-in-loop": "error",
         "camelcase": "error",
@@ -27,7 +33,9 @@
                 "format": ["camelCase"],
                 "leadingUnderscore": "allow"
             }
-        ]
+        ],
+        "prettier/prettier": "error",
+        "no-console": "off"
     },
     "env": {
         "node": true,
