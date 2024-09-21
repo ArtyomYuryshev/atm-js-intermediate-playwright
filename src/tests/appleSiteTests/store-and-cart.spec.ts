@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { ApplePage } from './applePO/main-page';
+import { ApplePage } from '../../pageObject/appleSitePO/main-page';
 
 const regions = [
     { name: 'UK', geoCookie: 'GB', expectNotification: true, expectStoreAndCart: true },

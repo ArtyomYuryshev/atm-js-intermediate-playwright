@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { ApplePage } from './applePO/main-page';
-import { ProductPage } from './applePO/shop-page';
+import { ApplePage } from '../../pageObject/appleSitePO/main-page';
+import { ProductPage } from '../../pageObject/appleSitePO/shop-page';
 
 const regionsWithShop = [
     {
