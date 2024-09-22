@@ -30,15 +30,15 @@ npm init playwright@latest
 You can run tests by using the following command in your terminal:
 
 ```shell
-npm run test:desktop
+npm run test:chrome
 ```
 
 By default tests runs in headless mode. To run in 'headed' mode:
 
 ```shell
-npm run test:desktop:headed
+npm run test:chrome:headed
 ```
-NOTE: To run tests on mobile devices, see package.json
+NOTE: To run tests on mobile devices or another browser, see package.json
 
 ### To view HTML report:
 
