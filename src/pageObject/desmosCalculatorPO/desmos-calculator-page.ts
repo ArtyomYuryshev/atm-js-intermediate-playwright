@@ -43,11 +43,39 @@ class DesmosCalculatorPage {
         return this.page.locator('//*[@aria-label="Add expression"]');
     }
 
+    get graphSettingsButton(): Locator {
+        return this.page.locator('//*[@aria-label="Graph Settings" and @role="button"]');
+    }
+
+    get contrastCheckbox(): Locator {
+        return this.page.locator('//div[@role="checkbox"]//span[text()="Reverse contrast"]');
+    }
+
+    get xAxisNameInput(): Locator {
+        return this.page.locator('//*[@placeholder="e.g. “x”"]');
+    }
+
+    get yAxisNameInput(): Locator {
+        return this.page.locator('//*[@placeholder="e.g. “y”"]');
+    }
+
     async addExpression(expression: string) {
         await this.addItemButton.click();
         await this.addExpressionListItem.click();
         await this.page.keyboard.type(expression);
         await this.page.keyboard.press('Enter');
+    }
+
+    async applyCustomStyle() {
+        const style = `
+            .dcg-toast-view.dcg-visible,
+            [aria-label="Zoom"],
+            [aria-label="Graph Settings"],
+            [aria-label="Show List"] {
+                display: none;
+            }
+        `;
+        await this.page.addStyleTag({ content: style });
     }
 }
 
