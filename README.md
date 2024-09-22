@@ -5,7 +5,7 @@
 
 # NOTE!
 
-> **You should create a `.env` file and define the variables "RP_API_KEY" and "RP_PROJECT". <br> The value for the "RP_API_KEY" variable should be your API token, and the value for the "RP_PROJECT" variable should be your project name.**
+> **You should create a `.env` file and define the variables "RP_API_KEY" and "RP_PROJECT". <br> The value for the "RP_API_KEY" variable should be your API token, and the value for the "RP_PROJECT" variable should be your project name. <br> Currently, all ReportPortal configuration is commented out to allow running tests without a ReportPortal account.**
 
 > **Tests adapted for mobile devices, tagged @mobile. Tests adapted for tablet devices, tagged @tablet**
 

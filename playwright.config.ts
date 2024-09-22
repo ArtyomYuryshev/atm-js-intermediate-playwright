@@ -3,23 +3,23 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const rpConfig = {
-    apiKey: process.env.RP_API_KEY,
-    endpoint: 'https://reportportal.epam.com/api/v1',
-    project: process.env.RP_PROJECT,
-    launch: `ATM-INTERMEDIATE Test Run - ${new Date().toISOString()}`,
-    attributes: [
-        {
-            key: 'browser',
-            value: 'chrome',
-        },
-    ],
-    description: 'ATM-INTERMEDIATE project',
-    debug: false,
-    restClientConfig: {
-        timeout: 0,
-    },
-};
+// const rpConfig = {
+//     apiKey: process.env.RP_API_KEY,
+//     endpoint: 'https://reportportal.epam.com/api/v1',
+//     project: process.env.RP_PROJECT,
+//     launch: `ATM-INTERMEDIATE Test Run - ${new Date().toISOString()}`,
+//     attributes: [
+//         {
+//             key: 'browser',
+//             value: 'chrome',
+//         },
+//     ],
+//     description: 'ATM-INTERMEDIATE project',
+//     debug: false,
+//     restClientConfig: {
+//         timeout: 0,
+//     },
+// };
 
 export default defineConfig({
     testDir: './src/tests/',
@@ -32,7 +32,7 @@ export default defineConfig({
         ['list'],
         ['html', { outputFolder: 'pw-reports/html', open: 'never' }],
         ['junit', { outputFile: 'pw-reports/junit/results.xml' }],
-        ['@reportportal/agent-js-playwright', rpConfig],
+        // ['@reportportal/agent-js-playwright', rpConfig],
     ],
     use: {
         baseURL: 'https://cloud.google.com',
