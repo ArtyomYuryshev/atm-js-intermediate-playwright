@@ -30,14 +30,15 @@ npm init playwright@latest
 You can run tests by using the following command in your terminal:
 
 ```shell
-npm test
+npm run test:desktop
 ```
 
 By default tests runs in headless mode. To run in 'headed' mode:
 
 ```shell
-npm run test:head
+npm run test:desktop:headed
 ```
+NOTE: To run tests on mobile devices, see package.json
 
 ### To view HTML report:
 
@@ -72,6 +73,6 @@ npm run lint
 ### To update Golden Screenshots:
 
 ```shell
-npx playwright test src/tests/visual/cloud-calculator-visual.spec.ts --update-snapshots
+npm run update-snapshots
 ```
 NOTE: it is better to create screenshots by running the test in the mode (with or without head) in which you plan to test. Otherwise, the visual difference may exceed the percentage set by the tests
