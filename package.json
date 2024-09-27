@@ -6,15 +6,14 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "test": "npx playwright test",
-    "test:head": "npx playwright test --headed",
-    "report": "npx playwright show-report pw-reports/html",
-    "report:runJunit": "junit-viewer --results=pw-reports/junit/results.xml --port=3000",
+    "lint": "eslint . --ext .ts",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write .",
-    "lint": "eslint . --ext .ts",
-    "test:desktop": "npx playwright test --project='chromium'",
-    "test:desktop:headed": "npx playwright test --project='chromium' --headed",
+    "report": "npx playwright show-report pw-reports/html",
+    "report:runJunit": "junit-viewer --results=pw-reports/junit/results.xml --port=3000",
+    "test:chrome": "npx playwright test --project='chromium'",
+    "test:chrome:headed": "npx playwright test --project='chromium' --headed",
+    "test:webkit": "npx playwright test --project='webkit'",
     "test:ios:mobile": "npx playwright test --project='iOS Mobile 17.5' --grep '@mobile'",
     "test:android:mobile:14": "npx playwright test --project='Android Mobile 14.0' --grep '@mobile'",
     "test:android:mobile:13": "npx playwright test --project='Android Mobile 13.0' --grep '@mobile'",
@@ -25,7 +24,8 @@
     "test:android:tablet:13": "npx playwright test --project='Android Tablet 13.0' --grep '@tablet'",
     "test:android:tablet:12": "npx playwright test --project='Android Tablet 12.0' --grep '@tablet'",
     "test:android:tablet:11": "npx playwright test --project='Android Tablet 11.0' --grep '@tablet'",
-    "test:android:tablet:9": "npx playwright test --project='Android Tablet 9.0 Pie' --grep '@tablet'"
+    "test:android:tablet:9": "npx playwright test --project='Android Tablet 9.0 Pie' --grep '@tablet'",
+    "update-snapshots": "npx playwright test src/tests/visual/cloud-calculator-visual.spec.ts --update-snapshots && npx playwright test src/tests/desmosCalculatorTests/desmosCalculatorVisualTests.spec.ts --update-snapshots"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -12,6 +12,17 @@ const desktopDevices = [
             isMobile: false,
         },
     },
+    {
+        name: 'webkit',
+        use: {
+            ...devices['Desktop Safari'],
+            viewport: { width: 1280, height: 720 },
+            launchOptions: {
+                args: ['--window-position=0,0', '--window-size=1280,720'],
+            },
+            isMobile: false,
+        },
+    },
 ];
 
 const mobileDevices = [

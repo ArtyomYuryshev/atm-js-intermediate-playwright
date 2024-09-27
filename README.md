@@ -5,7 +5,7 @@
 
 # NOTE!
 
-> **You should create a `.env` file and define the variables "RP_API_KEY" and "RP_PROJECT". <br> The value for the "RP_API_KEY" variable should be your API token, and the value for the "RP_PROJECT" variable should be your project name.**
+> **You should create a `.env` file and define the variables "RP_API_KEY" and "RP_PROJECT". <br> The value for the "RP_API_KEY" variable should be your API token, and the value for the "RP_PROJECT" variable should be your project name. <br> Currently, all ReportPortal configuration is commented out to allow running tests without a ReportPortal account.**
 
 > **Tests adapted for mobile devices, tagged @mobile. Tests adapted for tablet devices, tagged @tablet**
 
@@ -30,14 +30,15 @@ npm init playwright@latest
 You can run tests by using the following command in your terminal:
 
 ```shell
-npm test
+npm run test:chrome
 ```
 
 By default tests runs in headless mode. To run in 'headed' mode:
 
 ```shell
-npm run test:head
+npm run test:chrome:headed
 ```
+NOTE: To run tests on mobile devices or another browser, see package.json
 
 ### To view HTML report:
 
@@ -72,6 +73,6 @@ npm run lint
 ### To update Golden Screenshots:
 
 ```shell
-npx playwright test src/tests/visual/cloud-calculator-visual.spec.ts --update-snapshots
+npm run update-snapshots
 ```
 NOTE: it is better to create screenshots by running the test in the mode (with or without head) in which you plan to test. Otherwise, the visual difference may exceed the percentage set by the tests
